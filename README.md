@@ -15,3 +15,8 @@ matrix.class (error.class)
 vector.class (error.class)
 
 Be carefull about the dependancies.
+
+Contributors
+------
+- poulet_a
+- broggi_t
