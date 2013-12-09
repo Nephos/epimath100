@@ -141,6 +141,9 @@ class Vector
   # c1,c2,c3::
   #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
   def homothétie c1, c2, c3=nil
+    if c1 == nil or c2 == nil
+      Error.call "Coefficients invalids"
+    end
     hømø = nil
     if c3 == nil or @z == nil
       hømø = Matrix.new [[c1, 0], [0, c2]]
@@ -148,6 +151,20 @@ class Vector
       hømø = Matrix.new [[c1, 0, 0], [0, c2, 0], [0, 0, c3]]
     end
     return (hømø * self.to_matrix)
+  end
+  
+  def rotate a
+    if a == nil
+      Error.call "Angle invalid"
+    end
+    a = Math::PI * a / 180.0
+    røt = nil
+    if @z == nil
+      røt = Matrix.new [[Math.cos(a), -Math.sin(a)],[Math.sin(a), Math.cos(a)]]
+    else
+      røt = Matrix.new [[1, 0, 0], [0, Math.cos(a), -Math.sin(a)], [0, Math.sin(a), Math.cos(a)]]
+    end
+    return (røt * self.to_matrix)
   end
   
   # see +:: 
@@ -227,3 +244,5 @@ class Vector
     end
   end
 end
+
+puts Vector.new(1,0).rotate(90)
