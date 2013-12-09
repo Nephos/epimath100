@@ -150,6 +150,11 @@ class Vector
     return (hømø * self.to_matrix)
   end
   
+  # see +:: 
+  def translate par1
+    return (self+par1)
+  end
+  
   # == Parameters:
   # type:: 
   #   Optional and not used yet. It specify the format of the string. It may only be String yet.
@@ -221,5 +226,4 @@ class Vector
       return nil
     end
   end
-  
 end
