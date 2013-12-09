@@ -17,6 +17,24 @@ class Error
   @@errors = 0
   
   # == Parameters:
+  # type:: 
+  # ...
+  # == Returns: 
+  # True/False
+  def self.isnum? string
+    if string.is_a?String
+      if string.to_i.to_s == string or string.to_f.to_s == string
+        return true
+      else
+        return false
+      end  
+    else
+      Error.call "'{string}' is not a String"
+      return false
+    end
+  end
+  
+  # == Parameters:
   # m::
   #   A String that will be display. You don't need to specify the prefix ("Error :") or the final.
   # level:: 
