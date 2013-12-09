@@ -244,5 +244,3 @@ class Vector
     end
   end
 end
-
-puts Vector.new(1,0).rotate(90)

@@ -76,9 +76,11 @@ class Matrix
       
       # display all elements of this line
       line.each do |element|
-        if (type == Integer)
+        if (type == Integer or type == Float)
           if (element.is_a?(String))
             out << element.ord.to_s << " "
+          elsif type == Integer
+            out << element.to_i.to_s << " "
           else
             out << element.to_s << " "
           end
@@ -120,16 +122,6 @@ class Matrix
        @v.delete_at x
      else
        Error.call "Line '#{x}' doesn't exist"
-    end
-  end
-  
-  #... ? i don't know if it works
-  # == DO NOT USE THIS
-  def [](x)
-    if x.is_a?Integer
-      return @v[x]
-    else
-      Error.call "'#{x}' is not a correct line"
     end
   end
   
