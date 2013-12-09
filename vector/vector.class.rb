@@ -138,6 +138,19 @@ class Vector
   end
   
   # == Parameters:
+  # c1,c2,c3::
+  #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
+  def homothétie c1, c2, c3=nil
+    hømø = nil
+    if c3 == nil or @z == nil
+      hømø = Matrix.new [[c1, 0], [0, c2]]
+    else
+      hømø = Matrix.new [[c1, 0, 0], [0, c2, 0], [0, 0, c3]]
+    end
+    return (hømø * self.to_matrix)
+  end
+  
+  # == Parameters:
   # type:: 
   #   Optional and not used yet. It specify the format of the string. It may only be String yet.
   #
