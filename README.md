@@ -1,6 +1,12 @@
 ruby_sources
 ============
 
+Notes
+------
+All dependancies are availables in private.
+
+Infos
+------
 A compilation of class.
 
 There are
