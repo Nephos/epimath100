@@ -155,11 +155,18 @@ class Matrix
     end
   end
   
+  # == Parameters:
+  # t1,t2:: 
+  #   Multiply each elements of t1 and t2 2b2 and sum all
+  # == Returns: 
+  # Array
   def mult_array(t1, t2)
     if (!t1.is_a?Array or !t2.is_a?Array)
       Error.call "Can't multiply this. One of the arguments is not an array."
+      return nil
     elsif (t1.size != t2.size)
       Error.call "Can't multiply this. Arrays do not have the same size."
+      return nil
     end
     
     result = 0
@@ -254,11 +261,6 @@ class Matrix
     
     det = get_val(0, 0).to_i * get_val(1, 1).to_i
     det -= get_val(0, 1).to_i * get_val(1, 0).to_i
-    
-    if det == 0
-      Error.call "The matrix cannot be reversed (det = 0)"
-    end
-    
     return det
   end
   
