@@ -1,36 +1,5 @@
 #encoding: utf-8
 
-=begin
- ------ DOCUMENTATION ------
- 
- columns() => return the number of columns
- lines() => ...
- 
- to_s(Integer/String/) => return a readable string
- to_ary() => return an array
- 
- new_line([]/) => make a new line. Arguments : An Array with the good values (and plz the good size)
- new_column([]/) => ...
- 
- del_line(Integer/) => delete a line properly (by default the last line)
- TODO : del_column(Integer/) => ...
- 
- [] => ???
- 
- get_val(Integer,Integer) => return the value of the element [x][y]
- set_val(Integer,Integer) => set the value of the element [x][y]
- 
- get_line(Integer,Integer) => return to an Array with all values in the line x
- get_column(Integer,Integer) => ...
- 
- have_the_same_dimensions(Matrix) => Check if the matrix have the same dimensions than the argument (Matrix)
- mult_arry(Array,Array) => does a multiplication between two arrays of integer. Arrays must have the same size.
- 
- * => Multiplie with an integer or a other Matrix
- + => Addition with a other Matrix (or an Integer, which is added to all element of the Matrix)
- get_deter() => get the determinant of te matrix (ONLY WORKS WITH A 2x2 !!!)
-=end
-
 require_relative '../error/error.class'
 
 class Matrix
