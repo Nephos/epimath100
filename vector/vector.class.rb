@@ -23,7 +23,7 @@ class Vector
   #
   # == Errors::
   # If a parameter is invalid, it may be crash the programm with an ERR_HIGH
-  def initialize par1, par2=nil, par3=nil
+  def initialize par1, par2, par3=nil
     if par1.is_a?Vector #and par2 == nil and par3 == nil
       @x = par1.x
       @y = par1.y
@@ -31,17 +31,14 @@ class Vector
     elsif par1 != nil and par2 != nil
       @x = par1.to_f
       @y = par2.to_f
-      if par3 != nil
-        @z = par3.to_f
-      else
-        @z = nil
-      end
+      @z = par3.to_f
     else
       Error.call "The vector couldn't be initialisze with theses parameters : :par1 => '#{par1}', :par2 => '#{par2}'"
     end
     return self
   end
   
+  # TODO : cp doc from matrix
   def mult_array(t1, t2)
     if (!t1.is_a?Array or !t2.is_a?Array)
       Error.call "Can't multiply this. One of the arguments is not an array."
@@ -102,7 +99,7 @@ class Vector
   # == Parameters:
   # par1:
   #     This parameter may be a Vector or a number. If it's a Number, it will multiply all coponents of the Vector.
-  #     If it's an other vector, we will multiplie their coponents 2by2
+  #     If it's an other vector, we will multiplie their components 2by2
   # == Returns:
   # Vector
   def *(par1)
@@ -115,7 +112,7 @@ class Vector
       end
       
     elsif par1.is_a?Vector
-      ary1 = [out.x, out.y]
+      ary1 = [self.x, self.y]
       if out.z != nil
         ary1 << out.z
       end
@@ -180,7 +177,7 @@ class Vector
   # String
   def to_s type=String
     string = ""
-    if type == String or true # everytime true... for the moment
+    if type == String
       if @z == nil
         string = "(#{@x};#{@y})"
       else
@@ -239,6 +236,8 @@ class Vector
       return self.to_s
     elsif type == Array
       return self.to_ary
+    elsif type == Matrix
+      return self.to_matrix
     else
       return nil
     end

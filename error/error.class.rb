@@ -4,16 +4,16 @@
  Error is a class to display and manage your simple errors 
 =end
 
-ERR_HIGH = "Fatal Error"
-ERR_MEDIUM = "Error"
-ERR_LOW = "Warning"
-ERR_COLOR_RED = "0;31"
-ERR_COLOR_GREEN = "0;32"
-ERR_COLOR_YELLOW = "1;33"
-ERR_COLOR_BLUE = "0;34"
-ERR_COLOR_ORANGE = "0;33"
 
 class Error
+  ERR_HIGH = "Fatal Error"
+  ERR_MEDIUM = "Error"
+  ERR_LOW = "Warning"
+  ERR_COLOR_RED = "0;31"
+  ERR_COLOR_GREEN = "0;32"
+  ERR_COLOR_YELLOW = "1;33"
+  ERR_COLOR_BLUE = "0;34"
+  ERR_COLOR_ORANGE = "0;33"
   @@errors = 0
   
   # == Parameters:
@@ -52,27 +52,27 @@ class Error
   # An ERR_HIGH is only to call exit and stop the programm. So be carrefull.
   # This is the default value, you can change it if yo want
   # def self.call m, level=ERR_MEDIUM
-  def self.call m, level=ERR_MEDIUM
+  def self.call m, level=Error::ERR_MEDIUM
     
-    if level != ERR_HIGH and level != ERR_MEDIUM and level != ERR_LOW
-      self.call "error level invalid", ERR_MEDIUM
+    if level != Error::ERR_HIGH and level != Error::ERR_MEDIUM and level != Error::ERR_LOW
+      self.call "error level invalid", Error::ERR_MEDIUM
     end
     
     #message color
-    color = ERR_COLOR_YELLOW
-    if level == ERR_HIGH
-      color = ERR_COLOR_RED
-    elsif level == ERR_MEDIUM
-      color = ERR_COLOR_ORANGE
+    color = Error::ERR_COLOR_YELLOW
+    if level == Error::ERR_HIGH
+      color = Error::ERR_COLOR_RED
+    elsif level == Error::ERR_MEDIUM
+      color = Error::ERR_COLOR_ORANGE
     end
     
     #message display
-    if level == ERR_HIGH
+    if level == Error::ERR_HIGH
       puts "\033[#{color}m#{level} : #{m}.\033[00m"
       exit
-    elsif level == ERR_MEDIUM
+    elsif level == Error::ERR_MEDIUM
       puts "\033[#{color}m#{level} : #{m}.\033[00m"
-    elsif level == ERR_LOW
+    elsif level == Error::ERR_LOW
       puts "\033[#{color}m#{level} : #{m}.\033[00m"
     end
     
