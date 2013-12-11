@@ -94,6 +94,11 @@ class Matrix
     end
   end
   
+  # == Parameters:
+  # x,y:: 
+  #   Integers. They are the coordonates of the value which will extract from the matrix
+  # == Returns:
+  # a value fo the matrix
   def get_val x, y
     if !x.is_a?Integer
       Error.call "'#{x}' is not a correct line"
@@ -109,6 +114,11 @@ class Matrix
     end
   end
 
+  # == Parameters:
+  # x,y:: 
+  #   Integers. They are the coordonates of the value which will write in the matrix
+  # == Returns:
+  # a value fo the matrix
   def set_val val, x, y
     if !x.is_a?Integer
       Error.call "'#{x}' is not a correct line"
@@ -125,6 +135,11 @@ class Matrix
     end
   end
   
+  # == Parameters:
+  # y:: 
+  #   Integer. It's the n° line which is extracted
+  # == Returns:
+  # Array
   def get_line x
     if !x.is_a?Integer or x < 0 or x >= @lines
       Error.call "Line #{x} doesn't exist"
@@ -134,6 +149,11 @@ class Matrix
     return @v[x]
   end
   
+  # == Parameters:
+  # y:: 
+  #   Integer. It's the n° column which is extracted
+  # == Returns:
+  # Array
   def get_column y
     if !y.is_a?Integer or y < 0 or y >= @columns
       Error.call "Column #{y} doesn't exist"
@@ -147,6 +167,13 @@ class Matrix
     return result
   end
   
+  # == Params:
+  # matrix:: 
+  #   matrix is a Matrix to compare.
+  # == Returns:
+  # True or False.
+  # == Usage:: 
+  # The function check if the current matrix and matrix:: have the same dimensions (linse and columns)
   def have_the_same_dimensions matrix
     if (matrix.is_a? Matrix and matrix.columns == @columns and matrix.lines == @lines)
       true
@@ -254,6 +281,8 @@ class Matrix
     Matrix.new result
   end
   
+  # == Returns::
+  #   Numerical value which is the determinant of the matrix. It only work on 2x2
   def get_deter
     if @columns != 2 or @lines != 2
       Error.call "This error comes from get_deter which works only with 2x2 matrix"
