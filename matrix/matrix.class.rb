@@ -23,7 +23,7 @@ class Matrix
       tab.size.times do |i|
         @lines += 1
         if (tab[i].size != @columns)
-          Error.call "'#{tab[i]}' is not a valid line"
+          Error.call "Matrix::new : '#{tab[i]}' is not a valid line"
         end
         
       end
@@ -32,7 +32,7 @@ class Matrix
       @columns = tab.columns
       @lines = tab.lines
     else
-      Error.call "'#{tab}' is not a valid matrix"
+      Error.call "Matrix::new : '#{tab}' is not a valid matrix"
     end
     return
   end
@@ -68,11 +68,17 @@ class Matrix
   end
   
   def new_line tab=[]
+    if !tab.is_a?Array or tab.size != @column
+      Error.call "Matrix::new_line : Size of the new line (#{tab} => #{tab.size}) is not valid"
+    end
     @lines += 1
     @v << tab
   end
   
   def new_column tab=[]
+    if !tab.is_a?Array or tab.size != @lines
+      Error.call "Matrix::new_column : Size of the new column (#{tab} => #{tab.size}) is not valid"
+    end
     @columns += 1
     if tab.is_a? Array and tab.size == @lines
       @lines.times do |i|
@@ -90,7 +96,7 @@ class Matrix
        @lines -= 1
        @v.delete_at x
      else
-       Error.call "Line '#{x}' doesn't exist"
+       Error.call "Matrix::del_line : Line '#{x}' doesn't exist"
     end
   end
   
@@ -101,13 +107,13 @@ class Matrix
   # a value fo the matrix
   def get_val x, y
     if !x.is_a?Integer
-      Error.call "'#{x}' is not a correct line"
+      Error.call "Matrix::get_val : '#{x}' is not a correct line"
       return nil
     elsif !y.is_a?Integer
-      Error.call "'#{y}' is not a correct column"
+      Error.call "Matrix::get_val : '#{y}' is not a correct column"
       return nil
     elsif x < 0 or y < 0 or x >= @lines or y >= @columns
-      Error.call "The specified positions are invalids (#{x},#{y})"
+      Error.call "Matrix::get_val : The specified positions are invalids (#{x},#{y})"
       return nil
     else
       return @v[x][y]
@@ -121,13 +127,13 @@ class Matrix
   # a value fo the matrix
   def set_val val, x, y
     if !x.is_a?Integer
-      Error.call "'#{x}' is not a correct line"
+      Error.call "Matrix::set_val : '#{x}' is not a correct line"
       return nil
     elsif !y.is_a?Integer
-      Error.call "'#{y}' is not a correct column"
+      Error.call "Matrix::set_val : '#{y}' is not a correct column"
       return nil
     elsif x < 0 or y < 0 or x >= @lines or y >= @columns
-      Error.call "The specified positions are invalids (#{x} >= #{@lines},#{y} >= #{@columns}) #{self.to_s}"
+      Error.call "Matrix::set_val : The specified positions are invalids (#{x} >= #{@lines},#{y} >= #{@columns}) #{self.to_s}"
       return nil
     else
       @v[x][y] = val
@@ -142,7 +148,7 @@ class Matrix
   # Array
   def get_line x
     if !x.is_a?Integer or x < 0 or x >= @lines
-      Error.call "Line #{x} doesn't exist"
+      Error.call "Matrix::get_line : Line #{x} doesn't exist"
       return nil
     end
     
@@ -156,7 +162,7 @@ class Matrix
   # Array
   def get_column y
     if !y.is_a?Integer or y < 0 or y >= @columns
-      Error.call "Column #{y} doesn't exist"
+      Error.call "Matrix::get_column : Column #{y} doesn't exist"
       return []
     end
     
@@ -175,7 +181,7 @@ class Matrix
   # == Usage:: 
   # The function check if the current matrix and matrix:: have the same dimensions (linse and columns)
   def have_the_same_dimensions matrix
-    if (matrix.is_a? Matrix and matrix.columns == @columns and matrix.lines == @lines)
+    if (matrix.is_a?Matrix and matrix.columns == @columns and matrix.lines == @lines)
       true
     else
       false
@@ -189,10 +195,10 @@ class Matrix
   # Array
   def mult_array(t1, t2)
     if (!t1.is_a?Array or !t2.is_a?Array)
-      Error.call "Can't multiply this. One of the arguments is not an array."
+      Error.call "Matrix::mult_array : Can't multiply this. One of the arguments is not an array."
       return nil
     elsif (t1.size != t2.size)
-      Error.call "Can't multiply this. Arrays do not have the same size."
+      Error.call "Matrix::mult_array : Can't multiply this. Arrays do not have the same size."
       return nil
     end
     
@@ -220,7 +226,7 @@ class Matrix
     #produit matriciel
     if matrix.is_a?Matrix
       if @columns != matrix.lines
-        Error.call "Invalid multiplication at line #{matrix.lines} and column #{@columns}"
+        Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}"
         return nil
       end
       
@@ -248,7 +254,7 @@ class Matrix
     return Matrix.new result
     #message d'erreur
     else
-      Error.call "Impossible de calculer cela"
+      Error.call "Matrix::* : Impossible de calculer cela"
       return nil
     end
   end
@@ -275,7 +281,7 @@ class Matrix
         end
       end
     else
-      Error.call "Impossible de calculer cela"
+      Error.call "Matrix::+ : Impossible de calculer cela"
       result
     end
     Matrix.new result
@@ -285,7 +291,7 @@ class Matrix
   #   Numerical value which is the determinant of the matrix. It only work on 2x2
   def get_deter
     if @columns != 2 or @lines != 2
-      Error.call "This error comes from get_deter which works only with 2x2 matrix"
+      Error.call "Matrix::get_deter : This error comes from get_deter which works only with 2x2 matrix"
     end
     
     det = get_val(0, 0).to_i * get_val(1, 1).to_i
