@@ -5,6 +5,28 @@ require_relative '../error/error.class'
 class Matrix
   attr_reader :columns, :lines, :v 
   
+  # Convert each element of an Array in an Integer => must be implented in Array Class
+  def self.to_inttab arg, num=Float
+    if !arg.is_a?Array
+      Error.call "Matrix::to_inttab : '#{arg}' is not a valid Array", Error::ERR_HIGH
+    end
+    
+    arg.size.times do |i|
+      # if it's an Array in an Array, the 
+      if arg[i].is_a?Array
+        arg[i] = self.to_inttab argv[i]
+      
+      else
+        if num == Integer
+          arg[i] = arg[i].to_i
+        else
+          arg[i] = arg[i].to_f
+        end
+      end
+      
+    end
+  end
+  
   # == Parameters:
   # tab::
   #   tab is a double Array like [ [1,2], [3,4], [1,4] ]. This array should be a valid Matrix tab or an other Matrix
@@ -12,7 +34,7 @@ class Matrix
   # == Returns:
   #   nothing
   def initialize tab=[[]]
-    @v = tab
+    @v = tab #Must call to_inttab
     @columns = 0
     @lines = 0
 
@@ -37,7 +59,7 @@ class Matrix
     return
   end
   
-  def to_s(type=String)
+  def to_s
     out = ""
     
     @v.each do |line|
@@ -45,17 +67,7 @@ class Matrix
       
       # display all elements of this line
       line.each do |element|
-        if (type == Integer or type == Float)
-          if (element.is_a?(String))
-            out << element.ord.to_s << " "
-          elsif type == Integer
-            out << element.to_i.to_s << " "
-          else
-            out << element.to_s << " "
-          end
-        else
-          out << element.to_s << " "
-        end
+        out << element.to_s << " "
       end
     
       out << "\b]\n" # TODO : FIX THAT broggi_t
@@ -132,6 +144,9 @@ class Matrix
     elsif !y.is_a?Integer
       Error.call "Matrix::set_val : '#{y}' is not a correct column"
       return nil
+    elsif !val.is_a?Numeric
+      Error.call "Matrix::set_val : '#{val}' is not a correct value"
+      return nil
     elsif x < 0 or y < 0 or x >= @lines or y >= @columns
       Error.call "Matrix::set_val : The specified positions are invalids (#{x} >= #{@lines},#{y} >= #{@columns}) #{self.to_s}"
       return nil
@@ -204,7 +219,7 @@ class Matrix
     
     result = 0
     t1.size.times do |i|
-      result = (result + t1[i].to_f * t2[i].to_f).to_f
+      result = result + t1[i] * t2[i].to_f
     end
     return result
   end
@@ -226,8 +241,7 @@ class Matrix
     #produit matriciel
     if matrix.is_a?Matrix
       if @columns != matrix.lines
-        Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}"
-        return nil
+        Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}", Error:ERR_HIGH
       end
       
       result = []
@@ -244,7 +258,7 @@ class Matrix
       
       return Matrix.new result
     #produit d'un entier et d'une matrix
-    elsif matrix.is_a? Integer or matrix.is_a? Float 
+    elsif matrix.is_a?Numeric
       result = @v
       @lines.times do |x|
         @columns.times do |y|
@@ -254,8 +268,7 @@ class Matrix
     return Matrix.new result
     #message d'erreur
     else
-      Error.call "Matrix::* : Impossible de calculer cela"
-      return nil
+      Error.call "Matrix::* : Impossible de calculer cela", Error::ERR_HIGH
     end
   end
   
@@ -274,15 +287,14 @@ class Matrix
           result[x][y] += matrix.v[x][y]
         end
       end
-    elsif matrix.is_a?Integer
+    elsif matrix.is_a?Numeric
       @lines.times do |x|
         @columns.times do |y|
           result[x][y] += matrix
         end
       end
     else
-      Error.call "Matrix::+ : Impossible de calculer cela"
-      result
+      Error.call "Matrix::+ : Impossible de calculer cela", Error::ERR_HIGH
     end
     Matrix.new result
   end
