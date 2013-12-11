@@ -23,7 +23,7 @@ class Vector
   #
   # == Errors::
   # If a parameter is invalid, it may be crash the programm with an ERR_HIGH
-  def initialize par1, par2, par3=nil
+  def initialize par1, par2=nil, par3=nil
     if par1.is_a?Vector #and par2 == nil and par3 == nil
       @x = par1.x
       @y = par1.y
@@ -169,7 +169,11 @@ class Vector
   #    They are the components of the vector to translate.
   # see +::
   def translate par1, par2
-    return (self+Vector.new(par1, par2))
+    puts
+    puts par1
+    puts par2
+    x = Vector.new(par1, par2)
+    return (self+x)
   end
   
   # == Parameters:
@@ -255,7 +259,7 @@ class Vector
     if !Error.isnum? angle.to_s
       Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
     end
-    angle = Math::PI * angle / 180.0
+    angle = Math::PI * angle.to_f / 180.0
     s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
     vector = self.to_matrix
     vector.del_line()
