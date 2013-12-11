@@ -169,9 +169,6 @@ class Vector
   #    They are the components of the vector to translate.
   # see +::
   def translate par1, par2
-    puts
-    puts par1
-    puts par2
     x = Vector.new(par1, par2)
     return (self+x)
   end
@@ -266,5 +263,3 @@ class Vector
     return s * vector
   end
 end
-
-Vector.new(3,-1).symetric 270
