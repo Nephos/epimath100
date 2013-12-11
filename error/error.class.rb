@@ -31,7 +31,7 @@ class Error
         return false
       end  
     else
-      Error.call "'{string}' is not a String"
+      Error.call "'#{string}' is not a String"
       return false
     end
   end

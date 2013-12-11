@@ -243,15 +243,18 @@ class Vector
     end
   end
 
-  def symetric vector, angle
-    if !Error.isnum angle
-      Error.call "Variable angle is not a number (#{angle})", ERR_HIGH
-    end
-    if !vector.is_a?Vector
-      Error.call "Variable vectore is not a correct vector (#{vector})", ERR_HIGH
+  def symetric angle
+    if !Error.isnum? angle.to_s
+      Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
     end
     angle = Math::PI * angle / 180.0
-    S = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), - Math.cos(2 * angle)]];
-    return vector.to_matrix * S
+    s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
+    puts "#{s}"
+    puts "#{self}"
+    puts "#{self.to_matrix}"
+    puts "#{self.to_matrix.new_column[0, 0, 0]}"
+    return self.to_matrix.new_column([0, 0]) * s
   end
 end
+
+Vector.new(10,10).symetric 90
