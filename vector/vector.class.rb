@@ -164,9 +164,12 @@ class Vector
     return (røt * self.to_matrix)
   end
   
-  # see +:: 
-  def translate par1
-    return (self+par1)
+  # == Parameters:
+  # par1, par2::
+  #    They are the components of the vector to translate.
+  # see +::
+  def translate par1, par2
+    return (self+Vector.new(par1, par2))
   end
   
   # == Parameters:
