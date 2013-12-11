@@ -249,12 +249,10 @@ class Vector
     end
     angle = Math::PI * angle / 180.0
     s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
-    puts "#{s}"
-    puts "#{self}"
-    puts "#{self.to_matrix}"
-    puts "#{self.to_matrix.new_column[0, 0, 0]}"
-    return self.to_matrix.new_column([0, 0]) * s
+    vector = self.to_matrix
+    vector.del_line()
+    return s * vector
   end
 end
 
-Vector.new(10,10).symetric 90
+Vector.new(3,-1).symetric 270
