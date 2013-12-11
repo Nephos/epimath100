@@ -230,7 +230,7 @@ class Vector
   # String, Array, nil (see type::)
   #
   # == Errors: 
-  # nil return occures only if the parameter types:: is not supported. 
+  # nil return occures only if the parameter types:: is not supported.
   def to_a type=String
     if type == String
       return self.to_s
@@ -243,6 +243,11 @@ class Vector
     end
   end
 
+  # == Parameters :
+  # angle::
+  #   It is the incline of the line.
+  # == Return value:
+  # It returns the vector after the translation.
   def symetric angle
     if !Error.isnum? angle.to_s
       Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
