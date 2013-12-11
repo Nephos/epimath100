@@ -25,6 +25,8 @@ class Error
     if string.is_a?String
       if string.to_i.to_s == string or string.to_f.to_s == string
         return true
+      elsif string.is_a?Numeric
+        true
       else
         return false
       end  
