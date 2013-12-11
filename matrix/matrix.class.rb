@@ -79,6 +79,10 @@ class Matrix
     @v
   end
   
+  def to_vector
+    return Vector.new self.get_val(0, 0), self.get_val(0, 1)
+  end
+  
   def new_line tab=[]
     if !tab.is_a?Array or tab.size != @column
       Error.call "Matrix::new_line : Size of the new line (#{tab} => #{tab.size}) is not valid"
