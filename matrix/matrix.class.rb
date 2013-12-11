@@ -80,7 +80,7 @@ class Matrix
   end
   
   def to_vector
-    return Vector.new self.get_val(0, 0), self.get_val(0, 1)
+    return Vector.new self.get_val(0, 0), self.get_val(1, 0)
   end
   
   def new_line tab=[]
@@ -245,7 +245,7 @@ class Matrix
     #produit matriciel
     if matrix.is_a?Matrix
       if @columns != matrix.lines
-        Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}", Error:ERR_HIGH
+        Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}", Error::ERR_HIGH
       end
       
       result = []

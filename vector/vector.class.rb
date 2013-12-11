@@ -142,26 +142,25 @@ class Vector
       Error.call "Coefficients invalids"
     end
     hømø = nil
-    if c3 == nil or @z == nil
-      hømø = Matrix.new [[c1, 0], [0, c2]]
-    else
-      hømø = Matrix.new [[c1, 0, 0], [0, c2, 0], [0, 0, c3]]
-    end
-    return (hømø * self.to_matrix)
+    hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
+    puts hømø.to_s
+    puts
+    puts self.to_s
+    return (hømø * self.to_matrix).to_vector
   end
   
   def rotate a
     if a == nil
       Error.call "Angle invalid"
     end
-    a = Math::PI * a / 180.0
+    a = Math::PI * a.to_f / 180.0
     røt = nil
     if @z == nil
       røt = Matrix.new [[Math.cos(a), -Math.sin(a)],[Math.sin(a), Math.cos(a)]]
     else
       røt = Matrix.new [[1, 0, 0], [0, Math.cos(a), -Math.sin(a)], [0, Math.sin(a), Math.cos(a)]]
     end
-    return (røt * self.to_matrix)
+    return (røt * self.to_matrix).to_vector
   end
   
   # == Parameters:
@@ -260,6 +259,6 @@ class Vector
     s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
     vector = self.to_matrix
     vector.del_line()
-    return s * vector
+    return (s * vector).to_vector
   end
 end
