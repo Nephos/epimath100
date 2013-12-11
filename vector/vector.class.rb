@@ -168,8 +168,8 @@ class Vector
   #    They are the components of the vector to translate.
   # see +::
   def translate par1, par2
-    x = Vector.new(par1, par2)
-    return (self+x)
+    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]] #to display
+    return (s*self).to_vector
   end
   
   # == Parameters:
