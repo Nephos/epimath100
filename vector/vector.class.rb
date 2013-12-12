@@ -1,9 +1,5 @@
 #encoding: utf-8
 
-=begin
-        This is a class
-=end
-
 require_relative '../error/error.class'
 require_relative '../matrix/matrix.class'
 
@@ -144,8 +140,6 @@ class Vector
     hømø = nil
     hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
     puts hømø.to_s
-    puts
-    puts self.to_s
     return (hømø * self.to_matrix).to_vector
   end
   
@@ -160,6 +154,7 @@ class Vector
     else
       røt = Matrix.new [[1, 0, 0], [0, Math.cos(a), -Math.sin(a)], [0, Math.sin(a), Math.cos(a)]]
     end
+    puts røt.to_s
     return (røt * self.to_matrix).to_vector
   end
   
@@ -168,8 +163,26 @@ class Vector
   #    They are the components of the vector to translate.
   # see +::
   def translate par1, par2
-    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]] #to display
+    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]]
+    puts s.to_s
     return (s*self).to_vector
+  end
+
+  # == Parameters :
+  # angle::
+  #   It is the incline of the line.
+  # == Return value:
+  # It returns the vector after the translation.
+  def symetric angle
+    if !Error.isnum? angle.to_s
+      Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
+    end
+    angle = Math::PI * angle.to_f / 180.0
+    s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
+    vector = self.to_matrix
+    vector.del_line() # remove z
+    puts s.to_s
+    return (s * vector).to_vector
   end
   
   # == Parameters:
@@ -244,21 +257,5 @@ class Vector
     else
       return nil
     end
-  end
-
-  # == Parameters :
-  # angle::
-  #   It is the incline of the line.
-  # == Return value:
-  # It returns the vector after the translation.
-  def symetric angle
-    if !Error.isnum? angle.to_s
-      Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
-    end
-    angle = Math::PI * angle.to_f / 180.0
-    s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
-    vector = self.to_matrix
-    vector.del_line()
-    return (s * vector).to_vector
   end
 end
