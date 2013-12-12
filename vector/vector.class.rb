@@ -164,7 +164,6 @@ class Vector
     #verbose
     if @verbose
       puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
-      puts s.to_s
     end
 
     return (s * cpy.to_matrix).to_vector
@@ -186,7 +185,6 @@ class Vector
     #verbose
     if @verbose
       puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}"
-      puts s.to_s
     end
 
     return (s * cpy.to_matrix).to_vector
@@ -206,7 +204,6 @@ class Vector
     #verbose
     if @verbose
       puts "rotation d'angle #{a.to_f}"
-      puts s.to_s
     end
 
     return (s * cpy.to_matrix).to_vector
@@ -230,7 +227,6 @@ class Vector
     #verbose
     if @verbose
       puts "symétrie par rapport à un axe includé de #{angle.to_f} degrés"
-      puts s.to_s
     end
 
     return (s * cpy).to_vector
