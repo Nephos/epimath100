@@ -138,6 +138,30 @@ class Vector
   end
   
   # == Parameters:
+  # par1, par2::
+  #     They are the components of the vector to translate.
+  # par3::
+  #     Optional component (z)
+  # see +::
+  def translate par1, par2, par3=0.0
+    if !Error.isnum? par1 or !Error.isnum? par2 or !Error.isnum? par3
+      Error.call "A parameter to the translation is not a valid number"
+    end
+
+    s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]
+    cpy = self
+    cpy.z = 1.0
+
+    #verbose
+    if @verbose
+      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
+      puts s.to_s
+    end
+
+    return (s * cpy.to_matrix).to_vector
+  end
+  
+  # == Parameters:
   # c1,c2,c3::
   #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
   def homothétie c1, c2, c3=1.0
@@ -151,7 +175,7 @@ class Vector
 
     #verbose
     if @verbose
-      puts "homothétie de rapports #{c3.to_f}, #{c3.to_f}"
+      puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}"
       puts hømø.to_s
     end
 
@@ -179,30 +203,6 @@ class Vector
     end
 
     return (m * cpy.to_matrix).to_vector
-  end
-  
-  # == Parameters:
-  # par1, par2::
-  #     They are the components of the vector to translate.
-  # par3::
-  #     Optional component (z)
-  # see +::
-  def translate par1, par2, par3=0.0
-    if !Error.isnum? par1 or !Error.isnum? par2 or !Error.isnum? par3
-      Error.call "A parameter to the translation is not a valid number"
-    end
-
-    s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]
-    cpy = self
-    cpy.z = 1.0
-
-    #verbose
-    if @verbose
-      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s 3}"
-      puts s.to_s
-    end
-
-    return (s * cpy.to_matrix).to_vector
   end
 
   # == Parameters :
