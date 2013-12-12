@@ -160,6 +160,7 @@ class Vector
       Error.call "Angle invalid"
     end
 #    a = Math::PI * a.to_f / 180.0
+    a = a.to_f
     røt = nil
 
     if @z == nil
