@@ -159,7 +159,7 @@ class Vector
     if a == nil
       Error.call "Angle invalid"
     end
-    a = Math::PI * a.to_f / 180.0
+#    a = Math::PI * a.to_f / 180.0
     røt = nil
 
     if @z == nil
@@ -188,7 +188,7 @@ class Vector
       Error.call "A parameter to the translation is not a valid number"
     end
 
-    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]]
+    s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]
 
     #verbose
     if @verbose
