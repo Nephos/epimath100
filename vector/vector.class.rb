@@ -157,6 +157,7 @@ class Vector
     end
 
     s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]
+    @matrix_op = s
     cpy = self
     cpy.z = 1.0
 
@@ -177,40 +178,38 @@ class Vector
       Error.call "Coefficients invalids"
     end
 
-    hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
+    s = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
+    @matrix_op = s
     cpy = self
     cpy.z = 1.0
 
     #verbose
     if @verbose
       puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}"
-      puts hømø.to_s
+      puts s.to_s
     end
 
-    return (hømø * cpy.to_matrix).to_vector
+    return (s * cpy.to_matrix).to_vector
   end
   
   def rotate a
     if a == nil
       Error.call "Angle invalid"
     end
+    
     rad = Math::PI * a.to_f / 180.0
-
     cpy = self # copy to have the same value in z
     cpy.z = 0.0
-    if @z == nil
-      m = Matrix.new [[Math.cos(rad), -Math.sin(rad)],[Math.sin(rad), Math.cos(rad)]]
-    else
-      m = Matrix.new [[ Math.cos(rad), -Math.sin(rad), 0], [Math.sin(rad), Math.cos(rad), 0], [0, 0, 1]]
-    end
+    s = Matrix.new [[ Math.cos(rad), -Math.sin(rad), 0], [Math.sin(rad), Math.cos(rad), 0], [0, 0, 1]]
+    @matrix_op = s
 
     #verbose
     if @verbose
       puts "rotation d'angle #{a.to_f}"
-      puts m.to_s
+      puts s.to_s
     end
 
-    return (m * cpy.to_matrix).to_vector
+    return (s * cpy.to_matrix).to_vector
   end
 
   # == Parameters :
@@ -224,7 +223,8 @@ class Vector
     end
 
     rad = Math::PI * angle.to_f / 180.0
-    s = Matrix.new [[Math.cos(2 * rad), Math.sin(2 * rad), 0], [Math.sin(2 * rad), -Math.cos(2 * rad), 0], [0, 0, 1]];
+    s = Matrix.new [[Math.cos(2 * rad), Math.sin(2 * rad), 0], [Math.sin(2 * rad), -Math.cos(2 * rad), 0], [0, 0, 1]]
+    @matrix_op = s
     cpy = self.to_matrix
 
     #verbose
