@@ -188,15 +188,15 @@ class Vector
       Error.call "A parameter to the translation is not a valid number"
     end
 
-    s = Matrix.new [[par1.to_f], [par2.to_f], [par3.to_f]]
+    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]]
 
     #verbose
     if @verbose
       puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
-      puts hømø.to_s
+      puts s.to_s
     end
 
-    return (s + self.to_matrix).to_vector
+    return (s * self.to_matrix).to_vector
   end
 
   # == Parameters :
