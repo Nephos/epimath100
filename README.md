@@ -16,6 +16,8 @@ vector.class (error.class)
 
 Be carefull about the dependancies.
 
+TODO : test
+
 Contributors
 ------
 - poulet_a

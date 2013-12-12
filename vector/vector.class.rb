@@ -48,21 +48,6 @@ class Vector
     @matrix_op = Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
   end
   
-  # TODO : cp doc from matrix
-  def mult_array(t1, t2)
-    if (!t1.is_a?Array or !t2.is_a?Array)
-      Error.call "Can't multiply this. One of the arguments is not an array."
-    elsif (t1.size != t2.size)
-      Error.call "Can't multiply this. Arrays do not have the same size."
-    end
-    
-    result = 0.0
-    t1.size.times do |i|
-      result = (result + t1[i].to_f * t2[i].to_f).to_f
-    end
-    return result
-  end
-  
   # == Parameters:
   # par1::
   #   It may be a point coordonate x, or a other Vector.
@@ -133,7 +118,7 @@ class Vector
         ary2 << par1.z
       end
       
-      aryr = mult_array(ary1, ary2)
+      aryr = Matrix.mult_array(ary1, ary2)
       out.x = aryr[0]
       out.y = aryr[1]
       if aryr[2] != nil

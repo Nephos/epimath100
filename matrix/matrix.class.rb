@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 require_relative '../error/error.class'
-#require_relative '../matrix/matrix.class' TODO : ifnef ?
+require_relative '../vector/vector.class'
 
 class Matrix
   attr_reader :columns, :lines, :v 
@@ -212,19 +212,17 @@ class Matrix
   # t1,t2:: 
   #   Multiply each elements of t1 and t2 2b2 and sum all
   # == Returns: 
-  # Array
-  def mult_array(t1, t2)
+  # Float
+  def self.mult_array(t1, t2)
     if (!t1.is_a?Array or !t2.is_a?Array)
-      Error.call "Matrix::mult_array : Can't multiply this. One of the arguments is not an array."
-      return nil
+      Error.call "Can't multiply this. One of the arguments is not an array.", Error::ERR_HIGH
     elsif (t1.size != t2.size)
-      Error.call "Matrix::mult_array : Can't multiply this. Arrays do not have the same size."
-      return nil
+      Error.call "Can't multiply this. Arrays do not have the same size.", Error::ERR_HIGH
     end
     
-    result = 0
+    result = 0.0
     t1.size.times do |i|
-      result = result + t1[i] * t2[i].to_f
+      result = (result + t1[i].to_f * t2[i].to_f).to_f
     end
     return result
   end
@@ -263,7 +261,7 @@ class Matrix
       #ligne de resutlat = ligne de self Y
       @lines.times do |y|
         matrix.columns.times do |x|
-          result[y][x] = mult_array(get_line(y), matrix.get_column(x))
+          result[y][x] = Matrix.mult_array(get_line(y), matrix.get_column(x))
         end
       end
       
