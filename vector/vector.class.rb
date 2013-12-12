@@ -29,7 +29,7 @@ class Vector
       @z = par1.z
     elsif par1 != nil and par2 != nil
       if par3 == nil
-        par3 = 0.0
+        par3 = 1.0
       end
       @x = par1.to_f
       @y = par2.to_f
