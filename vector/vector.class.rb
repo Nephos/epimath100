@@ -306,7 +306,3 @@ class Vector
     end
   end
 end
-
-v = Vector.new 1, 2
-v.translate 1, 1
-v.rotate 90
