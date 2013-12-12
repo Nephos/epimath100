@@ -28,7 +28,7 @@ class Vector
       @z = par1.z
     elsif par1 != nil and par2 != nil
       if par3 == nil
-        par3 = 1.0
+        par3 = 0.0
       end
       @x = par1.to_f
       @y = par2.to_f
@@ -144,7 +144,10 @@ class Vector
     if c1 == nil or c2 == nil
       Error.call "Coefficients invalids"
     end
+
     hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
+    cpy = self
+    cpy.z = 1.0
 
     #verbose
     if @verbose
@@ -152,30 +155,30 @@ class Vector
       puts hømø.to_s
     end
 
-    return (hømø * self.to_matrix).to_vector
+    return (hømø * cpy.to_matrix).to_vector
   end
   
   def rotate a
     if a == nil
       Error.call "Angle invalid"
     end
-#    a = Math::PI * a.to_f / 180.0
-    a = a.to_f
-    røt = nil
+    rad = Math::PI * a.to_f / 180.0
 
+    cpy = self # copy to have the same value in z
+    cpy.z = 0.0
     if @z == nil
-      røt = Matrix.new [[Math.cos(a), -Math.sin(a)],[Math.sin(a), Math.cos(a)]]
+      m = Matrix.new [[Math.cos(rad), -Math.sin(rad)],[Math.sin(rad), Math.cos(rad)]]
     else
-      røt = Matrix.new [[1, 0, 0], [0, Math.cos(a), -Math.sin(a)], [0, Math.sin(a), Math.cos(a)]]
+      m = Matrix.new [[1, 0, 0], [0, Math.cos(rad), -Math.sin(rad)], [0, Math.sin(rad), Math.cos(rad)]]
     end
 
     #verbose
     if @verbose
       puts "rotation d'angle #{a.to_f}"
-      puts røt.to_s
+      puts m.to_s
     end
 
-    return (røt * self.to_matrix).to_vector
+    return (m * cpy.to_matrix).to_vector
   end
   
   # == Parameters:
@@ -190,14 +193,16 @@ class Vector
     end
 
     s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]
+    cpy = self
+    cpy.z = 1.0
 
     #verbose
     if @verbose
-      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
+      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s 3}"
       puts s.to_s
     end
 
-    return (s * self.to_matrix).to_vector
+    return (s * cpy.to_matrix).to_vector
   end
 
   # == Parameters :
