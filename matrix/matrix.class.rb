@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 require_relative '../error/error.class'
+require_relative '../vector/vector.class'
 
 class Matrix
   attr_reader :columns, :lines, :v 
@@ -243,6 +244,12 @@ class Matrix
   #   Then, we do the sum of them and we put it in a new Matrix at the position X. The is just a sum up, view the details on wiki bitch.
   def *(matrix)
     #produit matriciel
+    #convert vector -> matrix
+    if matrix.is_a?Vector
+      Error.call "Matrix::* : Transformation implicite de Vector en Matrix", Error::ERR_LOW
+      matrix = matrix.to_matrix
+    end
+    
     if matrix.is_a?Matrix
       if @columns != matrix.lines
         Error.call "Matrix::* : Invalid multiplication at line #{matrix.lines} and column #{@columns}", Error::ERR_HIGH
