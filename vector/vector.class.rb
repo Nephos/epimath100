@@ -4,7 +4,7 @@ require_relative '../error/error.class'
 require_relative '../matrix/matrix.class'
 
 class Vector
-  attr_accessor :x, :y, :z
+  attr_accessor :x, :y, :z, :verbose
   
   # == Parameters:
   # par1::
@@ -13,13 +13,15 @@ class Vector
   # par2,par3::
   #   Theses optionals parameters are used if the first parameter is not a Vector. If it occure, par2 is mandatory (but not par3).
   #   They will be stored in @y and @z.
+  # verbose::
+  #   verbose turn on/off the messages with translate, rotate, ...
   #
   # == Returns:
   # himself
   #
   # == Errors::
   # If a parameter is invalid, it may be crash the programm with an ERR_HIGH
-  def initialize par1, par2=nil, par3=nil
+  def initialize par1, par2=nil, par3=nil, verbose=true
     if par1.is_a?Vector #and par2 == nil and par3 == nil
       @x = par1.x
       @y = par1.y
@@ -31,6 +33,7 @@ class Vector
     else
       Error.call "The vector couldn't be initialisze with theses parameters : :par1 => '#{par1}', :par2 => '#{par2}'"
     end
+    @verbose = verbose
     return self
   end
   
@@ -134,12 +137,18 @@ class Vector
   # == Parameters:
   # c1,c2,c3::
   #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
-  def homothétie c1, c2, c3=nil
+  def homothétie c1, c2, c3=1.0
     if c1 == nil or c2 == nil
       Error.call "Coefficients invalids"
     end
     hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
-    puts hømø.to_s
+
+    #verbose
+    if @verbose
+      puts "homothétie de rapports #{c3.to_f}, #{c3.to_f}"
+      puts hømø.to_s
+    end
+
     return (hømø * self.to_matrix).to_vector
   end
   
@@ -149,12 +158,19 @@ class Vector
     end
     a = Math::PI * a.to_f / 180.0
     røt = nil
+
     if @z == nil
       røt = Matrix.new [[Math.cos(a), -Math.sin(a)],[Math.sin(a), Math.cos(a)]]
     else
       røt = Matrix.new [[1, 0, 0], [0, Math.cos(a), -Math.sin(a)], [0, Math.sin(a), Math.cos(a)]]
     end
-    puts røt.to_s
+
+    #verbose
+    if @verbose
+      puts "rotation d'angle #{angle.to_f}"
+      puts røt.to_s
+    end
+
     return (røt * self.to_matrix).to_vector
   end
   
@@ -170,7 +186,13 @@ class Vector
     end
 
     s = Matrix.new [[par1.to_f], [par2.to_f], [par3.to_f]]
-    puts s.to_s
+
+    #verbose
+    if @verbose
+      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
+      puts hømø.to_s
+    end
+
     return (s + self.to_matrix).to_vector
   end
 
@@ -183,11 +205,18 @@ class Vector
     if !Error.isnum? angle.to_s
       Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
     end
+
     angle = Math::PI * angle.to_f / 180.0
     s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
     vector = self.to_matrix
     vector.del_line() # remove z
-    puts s.to_s
+
+    #verbose
+    if @verbose
+      puts "symétrie par rapport à un axe includé de #{angle.to_f} degrés"
+      puts hømø.to_s
+    end
+
     return (s * vector).to_vector
   end
   
@@ -205,9 +234,11 @@ class Vector
       else
         string = "(#{@x};#{@y};#{@z})"
       end
+
     else
       Error.call "Invalid type conversion", ERR_LOW
     end
+
     return string
   end
   
