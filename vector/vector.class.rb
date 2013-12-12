@@ -5,6 +5,7 @@ require_relative '../matrix/matrix.class'
 
 class Vector
   attr_accessor :x, :y, :z, :verbose
+  attr_reader :matrix_op
   
   # == Parameters:
   # par1::
@@ -37,7 +38,14 @@ class Vector
       Error.call "The vector couldn't be initialisze with theses parameters : :par1 => '#{par1}', :par2 => '#{par2}'"
     end
     @verbose = verbose
+    @matrix_op = init_matrix_op
     return self
+  end
+  
+  # == Returns:
+  # Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
+  def init_matrix_op
+    @matrix_op = Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
   end
   
   # TODO : cp doc from matrix
