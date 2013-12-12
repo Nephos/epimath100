@@ -190,7 +190,7 @@ class Vector
     #verbose
     if @verbose
       puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
-      puts hømø.to_s
+      puts s.to_s
     end
 
     return (s * self.to_matrix).to_vector
