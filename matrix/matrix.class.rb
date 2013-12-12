@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 require_relative '../error/error.class'
-require_relative '../vector/vector.class'
+#require_relative '../matrix/matrix.class' TODO : ifnef ?
 
 class Matrix
   attr_reader :columns, :lines, :v 
