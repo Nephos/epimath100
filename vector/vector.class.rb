@@ -106,7 +106,8 @@ class Vector
       if out.z != nil
         out.z *= par1
       end
-      
+    elsif par1.is_a?Matrix
+        return (self.to_matrix * par1).to_vector
     elsif par1.is_a?Vector
       ary1 = [self.x, self.y]
       if out.z != nil
@@ -137,7 +138,6 @@ class Vector
     if c1 == nil or c2 == nil
       Error.call "Coefficients invalids"
     end
-    hømø = nil
     hømø = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
     puts hømø.to_s
     return (hømø * self.to_matrix).to_vector

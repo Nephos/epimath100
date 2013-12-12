@@ -272,7 +272,7 @@ class Matrix
     return Matrix.new result
     #message d'erreur
     else
-      Error.call "Matrix::* : Impossible de calculer cela", Error::ERR_HIGH
+      Error.call "Matrix::* : Impossible de calculer cela (#{matrix} n'est pas une matrix)", Error::ERR_HIGH
     end
   end
   
