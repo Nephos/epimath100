@@ -224,22 +224,28 @@ class Vector
   end
   
   # == Parameters:
+  # dim::
+  #   Option option to choose the desired number of dimension of the vector (if is it in 3d, it will be flattened)
   # type:: 
   #   Optional and not used yet. It specify the format of the string. It may only be String yet.
   #
   # == Returns: 
   # String
-  def to_s type=String
+  def to_s dim=2, type=String
     string = ""
     if type == String
-      if @z == nil
+      if @y == nil or dim == 1
+        string = "(#{@x})"
+      elsif @z == nil or dim == 2
         string = "(#{@x};#{@y})"
-      else
+      elsif dim == 3
         string = "(#{@x};#{@y};#{@z})"
+      else
+        Error.call "Vector::to_s : Invalid number of dimension specified"
       end
 
     else
-      Error.call "Invalid type conversion", ERR_LOW
+      Error.call "Vector::to_s : Invalid type conversion", ERR_LOW
     end
 
     return string
