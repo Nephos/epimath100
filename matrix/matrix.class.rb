@@ -68,7 +68,7 @@ class Matrix
       
       # display all elements of this line
       line.each do |element|
-        out << element.to_s << " "
+        out << element.to_f.round(3).to_s << " "
       end
     
       out << "\b]\n" # TODO : FIX THAT broggi_t
@@ -282,7 +282,7 @@ class Matrix
   end
   
   # == Parameters:
-  # matrix:: 
+  # matrix::
   #   This argument is a Matrix or an Integer. If it's a Matrix, it must have the same dimensions than the current Matrix.
   #   Else, if it's a integer, it will be added to each coeficients of the current Matrix.
   #
