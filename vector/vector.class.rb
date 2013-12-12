@@ -169,7 +169,7 @@ class Vector
     if @z == nil
       m = Matrix.new [[Math.cos(rad), -Math.sin(rad)],[Math.sin(rad), Math.cos(rad)]]
     else
-      m = Matrix.new [[1, 0, 0], [0, Math.cos(rad), -Math.sin(rad)], [0, Math.sin(rad), Math.cos(rad)]]
+      m = Matrix.new [[ Math.cos(rad), -Math.sin(rad), 0], [Math.sin(rad), Math.cos(rad), 0], [0, 0, 1]]
     end
 
     #verbose
@@ -215,18 +215,17 @@ class Vector
       Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
     end
 
-    angle = Math::PI * angle.to_f / 180.0
-    s = Matrix.new [[Math.cos(2 * angle), Math.sin(2 * angle)], [Math.sin(2 * angle), -Math.cos(2 * angle)]];
-    vector = self.to_matrix
-    vector.del_line() # remove z
+    rad = Math::PI * angle.to_f / 180.0
+    s = Matrix.new [[Math.cos(2 * rad), Math.sin(2 * rad), 0], [Math.sin(2 * rad), -Math.cos(2 * rad), 0], [0, 0, 1]];
+    cpy = self.to_matrix
 
     #verbose
     if @verbose
       puts "symétrie par rapport à un axe includé de #{angle.to_f} degrés"
-      puts hømø.to_s
+      puts s.to_s
     end
 
-    return (s * vector).to_vector
+    return (s * cpy).to_vector
   end
   
   # == Parameters:
