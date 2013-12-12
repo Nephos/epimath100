@@ -27,6 +27,9 @@ class Vector
       @y = par1.y
       @z = par1.z
     elsif par1 != nil and par2 != nil
+      if par3 == nil
+        par3 = 1.0
+      end
       @x = par1.to_f
       @y = par2.to_f
       @z = par3.to_f
@@ -45,7 +48,7 @@ class Vector
       Error.call "Can't multiply this. Arrays do not have the same size."
     end
     
-    result = 0
+    result = 0.0
     t1.size.times do |i|
       result = (result + t1[i].to_f * t2[i].to_f).to_f
     end
@@ -167,7 +170,7 @@ class Vector
 
     #verbose
     if @verbose
-      puts "rotation d'angle #{angle.to_f}"
+      puts "rotation d'angle #{a.to_f}"
       puts røt.to_s
     end
 
