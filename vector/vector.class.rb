@@ -160,12 +160,18 @@ class Vector
   
   # == Parameters:
   # par1, par2::
-  #    They are the components of the vector to translate.
+  #     They are the components of the vector to translate.
+  # par3::
+  #     Optional component (z)
   # see +::
-  def translate par1, par2
-    s = Matrix.new [[1, 0, par1.to_f], [0, 1, par2.to_f], [0, 0, 1]]
+  def translate par1, par2, par3=0.0
+    if !Error.isnum? par1 or !Error.isnum? par2 or !Error.isnum? par3
+      Error.call "A parameter to the translation is not a valid number"
+    end
+
+    s = Matrix.new [[par1.to_f], [par2.to_f], [par3.to_f]]
     puts s.to_s
-    return (s*self).to_vector
+    return (s + self.to_matrix).to_vector
   end
 
   # == Parameters :
