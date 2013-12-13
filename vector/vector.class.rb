@@ -226,7 +226,7 @@ class Vector
     if !axe.match(/[xy]/i)
       Error.call "Vector::proj_axe '#{axe} is not a valid axe", Error::ERR_HIGH
     end
-    puts axe
+    
     s = nil
     if axe.match(/x/i)
       s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 1]]
@@ -250,7 +250,7 @@ class Vector
   # == Return:
   # The vector after the translation
   def symetric_pointo
-      s = Matrix.new [[-1, 0, 0], [0, -1, 0], [0, 0, -1]]
+      s = Matrix.new [[-1, 0, 0], [0, -1, 0], [0, 0, 1]]
       
       @matrix_op = s
       cpy = self.to_matrix
@@ -259,7 +259,6 @@ class Vector
       if @verbose
         puts "symétrie par rapport à l'origine."
       end
-    end
     
     return (s * cpy).to_vector
   end
