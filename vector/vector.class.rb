@@ -275,7 +275,7 @@ class Vector
       end
 
     else
-      Error.call "Vector::to_s : Invalid type conversion", ERR_LOW
+      Error.call "Vector::to_s : Invalid type conversion", ERR_HIGH
     end
 
     return string
