@@ -54,7 +54,7 @@ class Error
   # An ERR_HIGH is only to call exit and stop the programm. So be carrefull.
   # This is the default value, you can change it if yo want
   # def self.call m, level=ERR_MEDIUM
-  def self.call m, level=Error::ERR_MEDIUM
+  def self.call m, level=Error::ERR_HIGH
     
     if level != Error::ERR_HIGH and level != Error::ERR_MEDIUM and level != Error::ERR_LOW
       self.call "error level invalid", Error::ERR_MEDIUM
