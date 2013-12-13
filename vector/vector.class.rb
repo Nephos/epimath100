@@ -72,12 +72,12 @@ class Vector
       out.y += par1
       
       if out.z != nil and par1 == nil
-        Error.call "The vector #{Vector.new(par1, par1, par1).to_s} do not have the same dimensions than #{out.to_s}", ERR_LOW
+        Error.call "The vector #{Vector.new(par1, par1, par1).to_s} do not have the same dimensions than #{out.to_s}", Error::ERR_HIGH
       elsif out.z != nil
         out.z += par1
       end
     else
-      Error.call "The vector couldn't be added with this parameters : #{par1}"
+      Error.call "The vector couldn't be added with this parameters : #{par1}", Error::ERR_HIGH
     end
     return out
   end
@@ -125,7 +125,7 @@ class Vector
         out.z = aryr[2]
       end
     else
-      Error.call "Unable to add '#{par1} to this vector", ERR_LOW  
+      Error.call "Unable to add '#{par1} to this vector", Error::ERR_HIGH
     end
     return out
   end
@@ -138,7 +138,7 @@ class Vector
   # see +::
   def translate par1, par2, par3=0.0
     if !Error.isnum? par1 or !Error.isnum? par2 or !Error.isnum? par3
-      Error.call "A parameter to the translation is not a valid number"
+      Error.call "A parameter to the translation is not a valid number", Error::ERR_HIGH
     end
 
     s = Matrix.new [[1.0, 0.0, par1.to_f], [0.0, 1.0, par2.to_f], [0.0, 0.0, 1.0]]

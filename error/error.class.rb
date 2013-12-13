@@ -22,7 +22,7 @@ class Error
   # == Returns: 
   # True/False
   def self.isnum? string
-    if string.is_a?String
+    if string.is_a?String and string != nil
       if string.to_i.to_s == string or string.to_f.to_s == string
         return true
       else
