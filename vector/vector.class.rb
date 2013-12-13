@@ -228,7 +228,7 @@ class Vector
     else
       puts axe
       s = nil
-      if match(/x/i)
+      if axe.match(/x/i)
         s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
       else
         s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
