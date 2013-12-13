@@ -175,6 +175,12 @@ class Vector
     return (s * cpy.to_matrix).to_vector
   end
   
+  # == Parameters:
+  # a::
+  #     The angle in degree
+  # 
+  # == Return value:
+  # It returns the vector after the translation.
   def rotate a
     if a == nil
       Error.call "Angle is invalid"
@@ -197,6 +203,7 @@ class Vector
   # == Parameters :
   # angle::
   #   It is the incline of the line.
+  #
   # == Return value:
   # It returns the vector after the translation.
   def symetric angle
@@ -220,6 +227,7 @@ class Vector
   # == Params:
   # axe:: 
   #   it must be "x" or "y" (case doesn't checked)
+  #
   # == Return:
   # The vector after the projection
   def proj_axe axe="x"
