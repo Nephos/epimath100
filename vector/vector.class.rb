@@ -225,23 +225,43 @@ class Vector
   def proj_axe axe="x"
     if !axe.match(/[xy]/i)
       Error.call "Vector::proj_axe '#{axe} is not a valid axe", Error::ERR_HIGH
+    end
+    puts axe
+    s = nil
+    if axe.match(/x/i)
+      s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 1]]
     else
-      puts axe
-      s = nil
-      if axe.match(/x/i)
-        s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 1]]
-      else
-        s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 1]]
-      end
+      s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 1]]
+    end
+    
+    @matrix_op = s
+    cpy = self.to_matrix
+
+    #verbose
+    if @verbose
+      puts "projection sur un axe #{axe}."
+    end
+    
+    return (s * cpy).to_vector
+  end
+  
+  # == Params:
+  # nothing
+  # == Return:
+  # The vector after the translation
+  def symetric_pointo
+      s = Matrix.new [[-1, 0, 0], [0, -1, 0], [0, 0, -1]]
       
       @matrix_op = s
       cpy = self.to_matrix
 
       #verbose
       if @verbose
-        puts "projection sur un axe #{axe}"
+        puts "symétrie par rapport à l'origine."
       end
     end
+    
+    return (s * cpy).to_vector
   end
   
   # == Parameters:
