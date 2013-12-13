@@ -25,6 +25,8 @@ class Error
     if string.is_a?String and string != nil
       if string.to_i.to_s == string or string.to_f.to_s == string
         return true
+      elsif string.to_i.to_s == string[1..-1] or string.to_f.to_s == string[1..-1]
+        true
       else
         return false
       end
