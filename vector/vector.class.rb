@@ -159,7 +159,7 @@ class Vector
   #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
   def homothétie c1, c2, c3=1.0
     if c1 == nil or c2 == nil
-      Error.call "Coefficients invalids"
+      Error.call "Coefficients are invalids"
     end
 
     s = Matrix.new [[c1.to_f, 0, 0], [0, c2.to_f, 0], [0, 0, c3.to_f]]
@@ -177,7 +177,7 @@ class Vector
   
   def rotate a
     if a == nil
-      Error.call "Angle invalid"
+      Error.call "Angle is invalid"
     end
     
     rad = Math::PI * a.to_f / 180.0
@@ -211,7 +211,7 @@ class Vector
 
     #verbose
     if @verbose
-      puts "symétrie par rapport à un axe includé de #{angle.to_f} degrés"
+      puts "symétrie par rapport à un axe incliné de #{angle.to_f} degrés"
     end
 
     return (s * cpy).to_vector
