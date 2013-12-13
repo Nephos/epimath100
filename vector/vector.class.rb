@@ -229,9 +229,9 @@ class Vector
       puts axe
       s = nil
       if axe.match(/x/i)
-        s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
+        s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 1]]
       else
-        s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+        s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 1]]
       end
       
       @matrix_op = s

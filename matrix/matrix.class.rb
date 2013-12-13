@@ -153,7 +153,7 @@ class Matrix
       Error.call "Matrix::set_val : '#{val}' is not a correct value"
       return nil
     elsif x < 0 or y < 0 or x >= @lines or y >= @columns
-      Error.call "Matrix::set_val : The specified positions are invalids (#{x} >= #{@lines},#{y} >= #{@columns}) #{self.to_s}"
+      Error.call "Matrix::set_val : The specified positions are invalids (#{x} >= #{@lines},#{y} >= #{@columns})\n#{self.to_s}"
       return nil
     else
       @v[x][y] = val
