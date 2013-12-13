@@ -250,17 +250,7 @@ class Vector
   # == Return:
   # The vector after the translation
   def symetric_pointo
-      s = Matrix.new [[-1, 0, 0], [0, -1, 0], [0, 0, 1]]
-      
-      @matrix_op = s
-      cpy = self.to_matrix
-
-      #verbose
-      if @verbose
-        puts "symétrie par rapport à l'origine."
-      end
-    
-    return (s * cpy).to_vector
+    return homothétie(-1, -1)
   end
   
   # == Parameters:
