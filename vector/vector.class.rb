@@ -226,8 +226,9 @@ class Vector
     if !axe.match(/[xy]/i)
       Error.call "Vector::proj_axe '#{axe} is not a valid axe", Error::ERR_HIGH
     else
+      puts axe
       s = nil
-      if axe == "x"
+      if match(/x/i)
         s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
       else
         s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
