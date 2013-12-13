@@ -217,6 +217,32 @@ class Vector
     return (s * cpy).to_vector
   end
   
+  # == Params:
+  # axe:: 
+  #   it must be "x" or "y" (case doesn't checked)
+  # == Return:
+  # The vector after the projection
+  def proj_axe axe="x"
+    if !axe.match(/[xy]/i)
+      Error.call "Vector::proj_axe '#{axe} is not a valid axe", Error::ERR_HIGH
+    else
+      s = nil
+      if axe == "x"
+        s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
+      else
+        s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+      end
+      
+      @matrix_op = s
+      cpy = self.to_matrix
+
+      #verbose
+      if @verbose
+        puts "projection sur un axe #{axe}"
+      end
+    end
+  end
+  
   # == Parameters:
   # dim::
   #   Option option to choose the desired number of dimension of the vector (if is it in 3d, it will be flattened)
