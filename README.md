@@ -22,3 +22,4 @@ Contributors
 ------
 - poulet_a
 - broggi_t
+- bauwen_j

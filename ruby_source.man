@@ -23,5 +23,5 @@ No known bugs.
 .br
 Report ./103architecte bugs to arthur.poulet@epitech.eu or to thibaut.broggi@epitech.eu
 .SH AUTHOR
-poulet_a, broggi_t
+poulet_a, broggi_t, bauwen_j
 
