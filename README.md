@@ -4,6 +4,7 @@ ruby_sources
 Notes
 ------
 All dependancies are availables in private.
+TODO : Place all files in a main directory to reduce the number of conflit
 
 Infos
 ------
