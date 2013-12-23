@@ -146,7 +146,6 @@ class Vector
     cpy = self
     cpy.z = 1.0
 
-    #verbose
     if @verbose
       puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
     end
@@ -167,7 +166,6 @@ class Vector
     cpy = self
     cpy.z = 1.0
 
-    #verbose
     if @verbose
       puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}"
     end
@@ -192,7 +190,6 @@ class Vector
     s = Matrix.new [[ Math.cos(rad), -Math.sin(rad), 0], [Math.sin(rad), Math.cos(rad), 0], [0, 0, 1]]
     @matrix_op = s
 
-    #verbose
     if @verbose
       puts "rotation d'angle #{a.to_f}"
     end
@@ -216,7 +213,6 @@ class Vector
     @matrix_op = s
     cpy = self.to_matrix
 
-    #verbose
     if @verbose
       puts "symétrie par rapport à un axe incliné de #{angle.to_f} degrés"
     end
@@ -245,7 +241,6 @@ class Vector
     @matrix_op = s
     cpy = self.to_matrix
 
-    #verbose
     if @verbose
       puts "projection sur un axe #{axe}."
     end
