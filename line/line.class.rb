@@ -13,7 +13,11 @@ class Line
 
     @point = {:x => x.to_f, :y => y.to_f, :z => z.to_f}
     @v_dir = Vector.new vx, vy, vz
-    @equ = {:x => 0, :y => 0, :z => 0, :d => 0} # todo : calc that
+    þ = 1
+    @equ_para = {
+      :x => @point[:x] + þ * @v_dir.x,
+      :y => @point[:y] + þ * @v_dir.y,
+      :z => @point[:z] + þ * @v_dir.z}
   end
 
   def to_s(options={})
