@@ -15,8 +15,11 @@ class Line
 
   def point_owned? p
     if p.is_a?Point
-      #test
-      true
+      if parametric(p, @v_dir) == parametric(@point, @v_dir)
+        true
+      else
+        false
+      end
     else
       false
     end
