@@ -6,7 +6,7 @@ require_relative '../matrix/matrix.class'
 class Vector
   attr_accessor :x, :y, :z, :verbose
   attr_reader :matrix_op
-  
+
   # == Parameters:
   # par1::
   #   The first parameter may be a point coordonate x, or a other Vector.
@@ -31,12 +31,17 @@ class Vector
       if par3 == nil
         par3 = 1.0
       end
+
+      if !par1.is_a?Numeric or !par2.is_a?Numeric or !par3.is_a?Numeric
+        Error.call "Vector::new : a passed argument is not a valid number"
+      end
       @x = par1.to_f
       @y = par2.to_f
       @z = par3.to_f
     else
-      Error.call "The vector couldn't be initialisze with theses parameters : :par1 => '#{par1}', :par2 => '#{par2}'"
+      Error.call "Vector::new : The vector couldn't be initialisze with theses parameters : :par1 => '#{par1}', :par2 => '#{par2}'"
     end
+
     @verbose = verbose
     @matrix_op = init_matrix_op
     return self
