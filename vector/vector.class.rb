@@ -32,7 +32,7 @@ class Vector
         par3 = 1.0
       end
 
-      if !par1.is_a?Numeric or !par2.is_a?Numeric or !par3.is_a?Numeric
+      if !Error.isnum?par1 or !Error.isnum?par2 or !Error.isnum?par3
         Error.call "Vector::new : a passed argument is not a valid number"
       end
       @x = par1.to_f
