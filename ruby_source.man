@@ -1,14 +1,16 @@
 .\" Manpage for ruby_sources.
 .\" Contact poulet_a@epitech.eu and broggi_t@epitech.eu .in to correct errors or typos.
-.TH man 1 " 2013" "1.0" "ruby_sources man page"
+.TH man 1 " 2013" "1.5" "ruby_sources man page"
 .SH NAME
 ruby_source
 .SH SYNOPSIS
-ruby_sources is a library in ruby which will help to create a Vector, a Matrix, or to call an Error. There is few class avaliables :
+ruby_sources is a library in ruby which will help to create a Vector, a Matrix, ... or to call an Error. There is few class avaliables :
 .P
 \fBMatrix \fR- Using and manipulating a Matrix easy. It's a basic Matrix class.
 .P
-\fBVector \fR- Using and manipulating a Line in 3 dimensions, with equations, vectors, etc.
+\fBPoint \fR- Using and manipulating a Point in 3D.
+.P
+\fBLine \fR- Using and manipulating a Line in 3 dimensions, with equations, vectors, etc.
 .P
 \fBVector \fR- Using and manipulating a Vector in 3 dimensions.
 .P
