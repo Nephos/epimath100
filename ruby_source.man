@@ -4,9 +4,11 @@
 .SH NAME
 ruby_source
 .SH SYNOPSIS
-ruby_sources is a library in ruby which will help to create a Vector, a Matrix, or to call an Error. There is 3 class avaliables :
+ruby_sources is a library in ruby which will help to create a Vector, a Matrix, or to call an Error. There is few class avaliables :
 .P
 \fBMatrix \fR- Using and manipulating a Matrix easy. It's a basic Matrix class.
+.P
+\fBVector \fR- Using and manipulating a Line in 3 dimensions, with equations, vectors, etc.
 .P
 \fBVector \fR- Using and manipulating a Vector in 3 dimensions.
 .P
@@ -21,7 +23,7 @@ No related manpage.
 .SH REPORTING BUGS
 No known bugs.
 .br
-Report ./103architecte bugs to arthur.poulet@epitech.eu or to thibaut.broggi@epitech.eu
+Report ./103architecte bugs to arthur.poulet@epitech.eu, thibaut.broggi@epitech.eu, or jordan.bauwens@epitech.eu
 .SH AUTHOR
 poulet_a, broggi_t, bauwen_j
 
