@@ -34,6 +34,10 @@ class Point
     end
   end
 
+  def to_s
+    "(#{self.x};#{self.y};#{self.z})"
+  end
+
   def x
     @coord[:x]
   end
