@@ -46,6 +46,3 @@ class Line
     end
   end
 end
-
-line = Line.new 1, 2, 3, 1, 1, 1
-puts line
