@@ -27,6 +27,7 @@ class Vector
       @x = par1.x
       @y = par1.y
       @z = par1.z
+
     elsif par1 != nil and par2 != nil
       if par3 == nil
         par3 = 1.0
