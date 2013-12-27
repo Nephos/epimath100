@@ -25,12 +25,18 @@ class Line
   # Returns:
   # true/false
   def point_owned? p
-    if p.is_a?Point
-      if Line::parametric(p, @v_dir) == Line::parametric(@point, @v_dir)
-        true
-      else
-        false
-      end
+    if !p.is_a?Point
+      Error.call "Line::point_owned? : #{p} is not a valid Point"
+    end
+
+    l = parametric()
+
+    ux = (p.x - l[:x][:p]) / l[:x][:v]
+    uy = (p.y - l[:y][:p]) / l[:y][:v]
+    uz = (p.z - l[:z][:p]) / l[:z][:v]
+
+    if ux == uy and ux == uz
+      true
     else
       false
     end
@@ -58,9 +64,9 @@ class Line
     end
 
     þ = 1 / v_dir.x
-    { :x => point.x + þ * v_dir.x,
-      :y => point.y + þ * v_dir.y,
-      :z => point.z + þ * v_dir.z}
+    { :x => { :p => point.x, :v => þ * v_dir.x},
+      :y => { :p => point.y, :v => þ * v_dir.y},
+      :z => { :p => point.z, :v => þ * v_dir.z}}
   end
 
   def to_s(options={})
