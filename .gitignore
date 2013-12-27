@@ -20,4 +20,4 @@ _yardoc
 doc/
 .project
 
-test*
+test/*
