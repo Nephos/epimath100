@@ -3,7 +3,7 @@
 require_relative '../error/error.class'
 require_relative '../matrix/matrix.class'
 
-class Vector
+class Vector < Matrix
   attr_accessor :x, :y, :z, :verbose
   attr_reader :matrix_op
 
@@ -36,6 +36,7 @@ class Vector
       if !Error.isnum?par1 or !Error.isnum?par2 or !Error.isnum?par3
         Error.call "Vector::new : a passed argument is not a valid number"
       end
+
       @x = par1.to_f
       @y = par2.to_f
       @z = par3.to_f
@@ -344,24 +345,39 @@ class Vector
     end
   end
 
-  def col v1, v2
-    if v1.is_a?Vector and v2.is_a?Vector
-      if v1.x == 0 and v1.y == 0
-        Error.call "Vector::col : vector null"
-      elsif v2.x == 0 and v2.y == 0
-        Error.call "Vector::col : vector null"
-      end
-      a = v1.x / v2.x
-      b = v1.y / v2.y
-      c = v1.z / v2.z
-      if a != b
-        return false
-      elsif b != c
-        return false
-      end
-      return true
+  def nil?
+    if @x == 0 and @y == 0 and @z == 0
+      true
+    else
+      false
     end
-    Error.call "Vector::col : invalid parameters"
+  end
+
+  def colineaire? v
+    Vector::colineaire? @self, v
+  end
+
+  # TODO : colineaire en anglais, division par 0
+  def self.colineaire? v1, v2
+    if !v1.is_a?Vector or !v2.is_a?Vector
+      Error.call "Vector::col : invalid parameters"
+    elsif v1.nil?
+      Error.call "Vector::col : vector v1 null"
+    elsif v2.nil?
+      Error.call "Vector::col : vector v2 null"
+    end
+
+    a = v1.x / v2.x
+    b = v1.y / v2.y
+    c = v1.z / v2.z
+
+    if a != b
+      false
+    elsif b != c
+      false
+    else
+      true
+    end
   end
 
 end
