@@ -343,4 +343,25 @@ class Vector
       return nil
     end
   end
+
+  def col v1, v2
+    if v1.is_a?Vector and v2.is_a?Vector
+      if v1.x == 0 and v1.y == 0
+        Error.call "Vector::col : vector null"
+      elsif v2.x == 0 and v2.y == 0
+        Error.call "Vector::col : vector null"
+      end
+      a = v1.x / v2.x
+      b = v1.y / v2.y
+      c = v1.z / v2.z
+      if a != b
+        return false
+      elsif b != c
+        return false
+      end
+      return true
+    end
+    Error.call "Vector::col : invalid parameters"
+  end
+
 end
