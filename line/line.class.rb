@@ -36,6 +36,12 @@ class Line
     end
   end
 
+  # Returns::
+  #     same than self.parametric but with the current object
+  def parametric
+    return Line::parametric @point, @v_dir
+  end
+
   # TODO : wtf ?
   # Parameters:
   # point::
