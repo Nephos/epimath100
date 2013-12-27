@@ -7,6 +7,11 @@ require_relative '../vector/vector.class.rb'
 class Line
   attr_reader :point, :v_dir, :equ_para
 
+  # Parameters:
+  # x,y,z::
+  #     There is the coordonates of the first point [TODO : directly take a point]
+  # vx, vy, vz::
+  #     The same, but init the right direction vector [TODO : same]
   def initialize x, y, z, vx, vy, vz
     @point = Point.new x, y, z
     @v_dir = Vector.new vx, vy, vz
