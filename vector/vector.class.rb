@@ -269,7 +269,7 @@ class Vector
   #
   # == Returns: 
   # String
-  def to_s dim=2, type=String
+  def to_s dim=3, type=String
     string = ""
     if type == String
       if @y == nil or dim == 1
@@ -277,7 +277,7 @@ class Vector
       elsif @z == nil or dim == 2
         string = "(#{@x.to_f.round(3)};#{@y.to_f.round(3)})"
       elsif dim == 3
-        string = "(#{@x.to_f.roung(3)};#{@y.to_f.round(3)};#{@z.to_f.round(3)})"
+        string = "(#{@x.to_f.round(3)};#{@y.to_f.round(3)};#{@z.to_f.round(3)})"
       else
         Error.call "Vector::to_s : Invalid number of dimension specified"
       end
