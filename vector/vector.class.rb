@@ -3,7 +3,7 @@
 require_relative '../error/error.class'
 require_relative '../matrix/matrix.class'
 
-class Vector < Matrix
+class Vector
   attr_accessor :x, :y, :z, :verbose
   attr_reader :matrix_op
 
