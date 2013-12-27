@@ -11,13 +11,20 @@ class Line
   # x,y,z::
   #     There is the coordonates of the first point [TODO : directly take a point]
   # vx, vy, vz::
-  #     The same, but init the right direction vector [TODO : same]
+  #     The same, but init the line direction vector [TODO : same]
   def initialize x, y, z, vx, vy, vz
     @point = Point.new x, y, z
     @v_dir = Vector.new vx, vy, vz
     @equ_para = Line::parametric @point, @v_dir
   end
 
+  # Check if the point specified is ON the line
+  # Parameter:
+  # p::
+  #     p is a Point
+  #
+  # Returns:
+  # true/false
   def point_owned? p
     if p.is_a?Point
       if Line::parametric(p, @v_dir) == Line::parametric(@point, @v_dir)
