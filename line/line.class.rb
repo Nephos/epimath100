@@ -22,7 +22,6 @@ class Line
   # Parameter:
   # p::
   #     p is a Point
-  #
   # Returns:
   # true/false
   def point_owned? p
@@ -37,6 +36,14 @@ class Line
     end
   end
 
+  # TODO : wtf ?
+  # Parameters:
+  # point::
+  #     point is a Point on the line
+  # v_dir::
+  #     a vector director of the line
+  # Returns:
+  # Hash 
   def self.parametric point, v_dir
     if !v_dir.is_a?Vector
       Error.call "Line::parametric : Invalid vector"
