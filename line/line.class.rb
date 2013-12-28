@@ -7,7 +7,7 @@ require_relative '../vector/vector.class.rb'
 class Line
   attr_reader :point, :v_dir, :equ_para
 
-  # Parameters:
+  # == Parameters:
   # x,y,z::
   #     There is the coordonates of the first point [TODO : directly take a point]
   # vx, vy, vz::
@@ -19,10 +19,10 @@ class Line
   end
 
   # Check if the point specified is ON the line
-  # Parameter:
+  # == Parameter:
   # p::
   #     p is a Point
-  # Returns:
+  # == Returns:
   # true/false
   def point_owned? p
     if !p.is_a?Point
@@ -42,20 +42,20 @@ class Line
     end
   end
 
-  # Returns::
+  # == Returns::
   #     same than self.parametric but with the current object
   def parametric
     return Line::parametric @point, @v_dir
   end
 
   # TODO : wtf ?
-  # Parameters:
+  # == Parameters:
   # point::
   #     point is a Point on the line
   # v_dir::
   #     a vector director of the line
-  # Returns:
-  # Hash 
+  # == Returns:
+  # Hash
   def self.parametric point, v_dir
     if !v_dir.is_a?Vector
       Error.call "Line::parametric : Invalid vector"
@@ -78,10 +78,10 @@ class Line
   end
 
   # This function returns the point which have a x value equal to the specified value. If there is no specified value, a random x is choosed.
-  # Parameters:
+  # == Parameters:
   # x::
   #     Optional. The value defined the point wich will be return.
-  # Returns:
+  # == Returns:
   # A Point where the x value is the x specified and ON the line
   def function x=nil
     if x == nil
