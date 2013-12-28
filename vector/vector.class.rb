@@ -353,6 +353,11 @@ class Vector
     end
   end
 
+# == Parameters
+# type::
+#   Verify if two vectors are collinear
+# == Return:
+#  True if vector u and v are collinear else false
   def collinear? v
     Vector::colineaire? @self, v
   end
