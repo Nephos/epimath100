@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 =begin
- Error is a class to display and manage your simple errors 
+ Error is a class to display and manage your simple errors
 =end
 
 
@@ -16,6 +16,7 @@ class Error
   ERR_COLOR_ORANGE = "0;33"
   @@errors = 0
   
+  # The function will check if the specified value can be converted to a Numerical value.
   # == Parameters:
   # type:: 
   # ...
@@ -38,36 +39,40 @@ class Error
     end
   end
   
-  # == Parameters:
-  # m::
-  #   A String that will be display. You don't need to specify the prefix ("Error :") or the final.
-  # level:: 
-  #   A optional parameter, wich influence the degree of the error. Default is ERR_HIGH, will kill your programm
-  #   So, be carrefull. You can change this value
-  #
-  # == Returns:
-  #   nil
-  # call is a function you can acces with Error.call "message", ERR_LEVEL
-  # the error's levels are
+  # "call" is a function you can acces with:
+  #     Error.call "message", ERR_LEVEL
+  # The error's levels are :
   # * ERR_HIGH
   # * ERR_MEDIUM
   # * ERR_LOW
-  # The level of error influence the color (visibility) and the exit call
+  # The error's level influence the color (visibility) and defined if the programm must exit.
   # An ERR_HIGH is only to call exit and stop the programm. So be carrefull.
-  # This is the default value, you can change it if yo want
+  # ERR_MEDIUM and ERR_LOW will just display the message and no more.
+  # ERR_HIGH is the default value, you can change it if yo want
   # def self.call m, level=ERR_MEDIUM
+  #
+  # == Parameters:
+  # m::
+  #   A String that will be display. You don't need to specify the prefix ("Error :") or the final "."
+  # level:: 
+  #   A optional parameter, wich influence the degree of the error. Default is ERR_HIGH, will kill your programm
+  #   So, be carrefull. You can change this value. It may be ERR_HIGH (Default), ERR_MEDIUM, ERR_LOW
+  #
+  # == Returns:
+  #   nil
   def self.call m, level=Error::ERR_HIGH
     
     if level != Error::ERR_HIGH and level != Error::ERR_MEDIUM and level != Error::ERR_LOW
-      self.call "error level invalid", Error::ERR_MEDIUM
+      self.call "Error::call : error level invalid", Error::ERR_MEDIUM
     end
     
     #message color
-    color = Error::ERR_COLOR_YELLOW
     if level == Error::ERR_HIGH
       color = Error::ERR_COLOR_RED
     elsif level == Error::ERR_MEDIUM
       color = Error::ERR_COLOR_ORANGE
+    elsif level == Error::ERR_LOW
+      color = Error::ERR_COLOR_YELLOW
     end
     
     #message display
