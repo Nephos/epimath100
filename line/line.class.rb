@@ -76,4 +76,21 @@ class Line
       Error.call "Line::to_s : options is not valid"
     end
   end
+
+  # This function returns the point which have a x value equal to the specified value. If there is no specified value, a random x is choosed.
+  # Parameters:
+  # x::
+  #     Optional. The value defined the point wich will be return.
+  # Returns:
+  # A Point where the x value is the x specified and ON the line
+  def function x=nil
+    if x == nil
+      x = rand -100..100
+    end
+
+    lp = parametric()
+    u = (x - lp[:x][:p]) / lp[:x][:v]
+    Point.new(x, lp[:y][:p] + u * lp[:y][:v], lp[:z][:p] + u * lp[:y][:v])
+  end
+
 end
