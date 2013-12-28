@@ -41,7 +41,7 @@ class Error
   
   # "call" is a function you can acces with:
   #     Error.call "message", ERR_LEVEL
-  # The error's levels are :
+  # == The error's levels are :
   # * ERR_HIGH
   # * ERR_MEDIUM
   # * ERR_LOW
@@ -54,7 +54,7 @@ class Error
   # == Parameters:
   # m::
   #   A String that will be display. You don't need to specify the prefix ("Error :") or the final "."
-  # level:: 
+  # level::
   #   A optional parameter, wich influence the degree of the error. Default is ERR_HIGH, will kill your programm
   #   So, be carrefull. You can change this value. It may be ERR_HIGH (Default), ERR_MEDIUM, ERR_LOW
   #
@@ -89,10 +89,10 @@ class Error
     return self
   end
   
-  # Parameters:
-  # nothing:; 
+  # == Parameters:
+  # nothing::
   #
-  # Returns:
+  # == Returns:
   # Integer which contains the numbr of errors called
   def self.errors
     @@errors
