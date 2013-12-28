@@ -48,7 +48,6 @@ class Line
     return Line::parametric @point, @v_dir
   end
 
-  # TODO : wtf ?
   # == Parameters:
   # point::
   #     point is a Point on the line
