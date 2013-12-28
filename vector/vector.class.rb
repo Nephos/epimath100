@@ -353,30 +353,27 @@ class Vector
     end
   end
 
-  def colineaire? v
+  def collinear? v
     Vector::colineaire? @self, v
   end
 
-  # TODO : colineaire en anglais, division par 0
-  def self.colineaire? v1, v2
-    if !v1.is_a?Vector or !v2.is_a?Vector
+  def self.collinear? u, v
+    if !u.is_a?Vector or !v.is_a?Vector
       Error.call "Vector::col : invalid parameters"
-    elsif v1.nil?
-      Error.call "Vector::col : vector v1 null"
-    elsif v2.nil?
-      Error.call "Vector::col : vector v2 null"
+    elsif u.nil?
+      Error.call "Vector::col : vector v1 null", Error::ERR_LOW
+    elsif v.nil?
+      Error.call "Vector::col : vector v2 null", Error::ERR_LOW
     end
 
-    a = v1.x / v2.x
-    b = v1.y / v2.y
-    c = v1.z / v2.z
+    x = u.y * v.z - u.z * v.y
+    y = u.z * v.x - u.x * v.z
+    z = u.x * v.y - u.y * v.x
 
-    if a != b
-      false
-    elsif b != c
-      false
-    else
+    if x == 0 and y == 0 and z == 0
       true
+    else
+      false
     end
   end
 
