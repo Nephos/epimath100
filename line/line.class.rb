@@ -76,20 +76,63 @@ class Line
     end
   end
 
-  # This function returns the point which have a x value equal to the specified value. If there is no specified value, a random x is choosed.
+  # This function returns the point which have x, y, or z == v (the first)
+  # We choose the first where self.v_dir.n != 0
+  # == Parameters:
+  # v::
+  #     The value defined the point wich will be return.
+  # == Returns:
+  # A Point where the x, y, or z value is the v specified and ON the line
+  def function v
+    if self.nil?
+      Error.call "Line::function : unable to execute function : the vector v_dir is null"
+    end
+    
+    if @v_dir.x != 0
+      return functionx v
+    elsif @v_dir.y != 0
+      return functionx v
+    elsif @v_dir.z != 0
+      return functionx v
+    end
+  end
+  
+  # This function returns the point which have a x value equal to the specified value.
   # == Parameters:
   # x::
-  #     Optional. The value defined the point wich will be return.
+  #     The value defined the point wich will be return.
   # == Returns:
   # A Point where the x value is the x specified and ON the line
-  def function x=nil
-    if x == nil
-      x = rand -100..100
+  def functionx x
+    if !x.is_a?Numerical or @v_dir.x == 0
+      Error.call "Line::functionx : invalid x value"  
     end
-
+    
     lp = parametric()
     u = (x - lp[:x][:p]) / lp[:x][:v]
     Point.new(x, lp[:y][:p] + u * lp[:y][:v], lp[:z][:p] + u * lp[:y][:v])
+  end
+  
+  #Same than functionx but from y
+  def functiony y
+    if !y.is_a?Numerical or @v_dir.y == 0
+      Error.call "Line::functionx : invalid y value"  
+    end
+    
+    lp = parametric()
+    u = (y - lp[:y][:p]) / lp[:y][:v]
+    Point.new(lp[:x][:p] + u * lp[:x][:v], y, lp[:z][:p] + u * lp[:z][:v])
+  end
+  
+  #Same than functionx but from z
+  def functionz z
+    if !y.is_a?Numerical or @v_dir.z == 0
+      Error.call "Line::functionx : invalid z value"  
+    end
+    
+    lp = parametric()
+    u = (z - lp[:z][:p]) / lp[:z][:v]
+    Point.new(lp[:x][:p] + u * lp[:x][:v], lp[:y][:p] + u * lp[:y][:v], z)
   end
 
 end
