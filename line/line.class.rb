@@ -124,7 +124,7 @@ class Line
     
     lp = parametric()
     u = (x - lp[:x][:p]) / lp[:x][:v]
-    Point.new(x, lp[:y][:p] + u * lp[:y][:v], lp[:z][:p] + u * lp[:y][:v])
+    Point.new(x, lp[:y][:p] + u * lp[:y][:v], lp[:z][:p] + u * lp[:z][:v])
   end
   
   #Same than functionx but from y
