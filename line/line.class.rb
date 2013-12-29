@@ -35,6 +35,18 @@ class Line
     uy = (p.y - l[:y][:p]) / l[:y][:v]
     uz = (p.z - l[:z][:p]) / l[:z][:v]
 
+    if l[:x][:v] == 0 and p.x == l[:x][:p]
+      ux = uy  
+    end
+    
+    if l[:y][:v] == 0 and p.y == l[:y][:p]
+      uy = uz  
+    end
+    
+    if l[:z][:v] == 0 and p.z == l[:z][:p]
+      uz = ux  
+    end
+    
     if ux == uy and ux == uz
       true
     else
@@ -62,7 +74,7 @@ class Line
       Error.call "Line::parametric : Invalid point"
     end
 
-    þ = 1 / v_dir.x
+    þ = 1
     { :x => { :p => point.x, :v => þ * v_dir.x},
       :y => { :p => point.y, :v => þ * v_dir.y},
       :z => { :p => point.z, :v => þ * v_dir.z}}
@@ -91,9 +103,9 @@ class Line
     if @v_dir.x != 0
       return functionx v
     elsif @v_dir.y != 0
-      return functionx v
+      return functiony v
     elsif @v_dir.z != 0
-      return functionx v
+      return functionz v
     end
   end
   
@@ -104,8 +116,10 @@ class Line
   # == Returns:
   # A Point where the x value is the x specified and ON the line
   def functionx x
-    if !x.is_a?Numerical or @v_dir.x == 0
-      Error.call "Line::functionx : invalid x value"  
+    if !x.is_a?Numeric
+      Error.call "Line::functionx : invalid x value"
+    elsif @v_dir.x == 0
+      Error.call "Line::functionx : unable to calculate this, because v_dir.x == 0"
     end
     
     lp = parametric()
@@ -115,8 +129,10 @@ class Line
   
   #Same than functionx but from y
   def functiony y
-    if !y.is_a?Numerical or @v_dir.y == 0
-      Error.call "Line::functionx : invalid y value"  
+    if !y.is_a?Numeric
+      Error.call "Line::functionx : invalid y value"
+    elsif @v_dir.y == 0
+      Error.call "Line::functionx : unable to calculate this, because v_dir.y == 0"  
     end
     
     lp = parametric()
@@ -126,8 +142,10 @@ class Line
   
   #Same than functionx but from z
   def functionz z
-    if !y.is_a?Numerical or @v_dir.z == 0
-      Error.call "Line::functionx : invalid z value"  
+    if !z.is_a?Numeric
+      Error.call "Line::functionx : invalid z value"
+    elsif @v_dir.z == 0
+      Error.call "Line::functionx : unable to calculate this, because v_dir.z == 0"  
     end
     
     lp = parametric()
