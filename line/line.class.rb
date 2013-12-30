@@ -15,7 +15,7 @@ class Line
   def initialize point, vector
     if !point.is_a?Point
       Error.call "Line::new : '#{point}' is not a Point"
-    if !vector.is_a?Vector
+    elsif !vector.is_a?Vector
       Error.call "Line::new : '#{vector}' is not a Vector"
     end
 
