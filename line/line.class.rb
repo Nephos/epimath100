@@ -94,69 +94,21 @@ class Line
     end
   end
 
-  # This function returns the point which have x, y, or z == v (the first)
-  # We choose the first where self.v_dir.n != 0
+  # This function returns the point on the line where x = v * vx + px, ...
   # == Parameters:
   # v::
   #     The value defined the point wich will be return.
   # == Returns:
-  # A Point where the x, y, or z value is the v specified and ON the line
+  # The choosed Point one the line from v (lambda)
   def function v
     if self.nil?
       Error.call "Line::function : unable to execute function : the vector v_dir is null"
+    elsif !z.is_a?Numeric
+      Error.call "Line::functionx : invalid lambda ( #{v} ) value"
     end
-    
-    if @v_dir.x != 0
-      return functionx v
-    elsif @v_dir.y != 0
-      return functiony v
-    elsif @v_dir.z != 0
-      return functionz v
-    end
-  end
-  
-  # This function returns the point which have a x value equal to the specified value.
-  # == Parameters:
-  # x::
-  #     The value defined the point wich will be return.
-  # == Returns:
-  # A Point where the x value is the x specified and ON the line
-  def functionx x
-    if !x.is_a?Numeric
-      Error.call "Line::functionx : invalid x value"
-    elsif @v_dir.x == 0
-      Error.call "Line::functionx : unable to calculate this, because v_dir.x == 0"
-    end
-    
+
     lp = parametric()
-    u = (x - lp[:x][:p]) / lp[:x][:v]
-    Point.new(x, lp[:y][:p] + u * lp[:y][:v], lp[:z][:p] + u * lp[:z][:v])
-  end
-  
-  #Same than functionx but from y
-  def functiony y
-    if !y.is_a?Numeric
-      Error.call "Line::functionx : invalid y value"
-    elsif @v_dir.y == 0
-      Error.call "Line::functionx : unable to calculate this, because v_dir.y == 0"  
-    end
-    
-    lp = parametric()
-    u = (y - lp[:y][:p]) / lp[:y][:v]
-    Point.new(lp[:x][:p] + u * lp[:x][:v], y, lp[:z][:p] + u * lp[:z][:v])
-  end
-  
-  #Same than functionx but from z
-  def functionz z
-    if !z.is_a?Numeric
-      Error.call "Line::functionx : invalid z value"
-    elsif @v_dir.z == 0
-      Error.call "Line::functionx : unable to calculate this, because v_dir.z == 0"  
-    end
-    
-    lp = parametric()
-    u = (z - lp[:z][:p]) / lp[:z][:v]
-    Point.new(lp[:x][:p] + u * lp[:x][:v], lp[:y][:p] + u * lp[:y][:v], z)
+    Point.new(lp[:x][:p] + v * lp[:x][:v], lp[:y][:p] + v * lp[:y][:v], lp[:z][:p] + v * lp[:z][:v])
   end
 
 end
