@@ -103,7 +103,7 @@ class Line
   def function v
     if self.nil?
       Error.call "Line::function : unable to execute function : the vector v_dir is null"
-    elsif !z.is_a?Numeric
+    elsif !v.is_a?Numeric
       Error.call "Line::functionx : invalid lambda ( #{v} ) value"
     end
 
