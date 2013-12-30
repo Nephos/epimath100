@@ -8,13 +8,13 @@ class Line
   attr_reader :point, :v_dir, :equ_para
 
   # == Parameters:
-  # x,y,z::
-  #     There is the coordonates of the first point [TODO : directly take a point]
-  # vx, vy, vz::
-  #     The same, but init the line direction vector [TODO : same]
-  def initialize x, y, z, vx, vy, vz
-    @point = Point.new x, y, z
-    @v_dir = Vector.new vx, vy, vz
+  # point::
+  #     Any point on the line. It must be a Point (../point/point.class.rb)
+  # vector::
+  #     Any vector director of the line. It must be a Vector (../vector/vector.class.rb)
+  def initialize point, vector
+    @point = point
+    @v_dir = vector
     @equ_para = Line::parametric @point, @v_dir
   end
 
