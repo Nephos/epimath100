@@ -17,6 +17,8 @@ class Line
       Error.call "Line::new : '#{point}' is not a Point"
     elsif !vector.is_a?Vector
       Error.call "Line::new : '#{vector}' is not a Vector"
+    elsif vector.nil?
+      Error.call "Line::new : '#{vector}' can't be Null"
     end
 
     @point = point
