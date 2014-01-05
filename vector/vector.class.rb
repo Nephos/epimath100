@@ -49,6 +49,11 @@ class Vector
     return self
   end
   
+  # Return to the norm of the currenet vector
+  def norm
+    Math.sqrt(@x**2 + @y**2 + @z**2)
+  end
+  
   # == Returns:
   # Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
   def init_matrix_op
