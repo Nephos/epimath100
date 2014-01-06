@@ -35,7 +35,7 @@ class Point
   end
 
   def to_s
-    "(#{self.x};#{self.y};#{self.z})"
+    "(#{self.x}; #{self.y}; #{self.z})"
   end
 
   def x
