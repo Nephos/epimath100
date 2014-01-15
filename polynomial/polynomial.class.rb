@@ -25,13 +25,13 @@ class Polynomial
   def initialize hash={}
     Error.call "Polynomial::new : You hash is invalid" if !hash.is_a?Hash
 
-    @coef = hash.select{|coef,value| coef.match /[a-z]/}
+    @coef = hash.select{|coef,value| coef.match(/[a-z]/)}
   end
 
   def derive
     dérivé = Polynomial.new
 
-    @coef.select{|coef,value| !coef.match /[a]/}.each do |coef,value|
+    @coef.select{|coef,value| !coef.match(/[a]/)}.each do |coef,value|
       dérivé_coef = :"#{(coef.to_s.ord - 1).chr}"
       dérivé.coef[dérivé_coef] = value * (coef.to_s.ord - "a".to_s.ord)
     end
@@ -43,7 +43,7 @@ class Polynomial
     str = " = 0"
     str = "#{@coef[:a]}" + str #if @coef[:a]
 
-    @coef.select{|coef,value| !coef.match /[a]/}.each do |coef,value|
+    @coef.select{|coef,value| !coef.match(/[a]/)}.each do |coef,value|
       #sign = "+"
       #sign = "-" if value < 0
       str = "#{value}x^#{(coef.to_s.ord - "a".ord)} + " + str #if value != 0
