@@ -28,6 +28,9 @@ class Polynomial
     @coef = hash.select{|coef,value| coef.match(/[a-z]/)}
   end
 
+  #calculate the derivated function of the current polynomial
+  # == Returns:
+  # Polynomial (the derivated function)
   def derive
     dérivé = Polynomial.new
 
@@ -39,6 +42,7 @@ class Polynomial
     return dérivé
   end
 
+  #TODO : improve this shit
   def to_s
     str = " = 0"
     str = "#{@coef[:a]}" + str #if @coef[:a]
