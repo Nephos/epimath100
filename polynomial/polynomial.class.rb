@@ -45,25 +45,25 @@ class Polynomial
   #TODO : improve this shit
   def to_s
     str = " = y"
-    str = "#{@coef[:a]}" + str #if @coef[:a]
+    str = "#{@coef[:a].t_i}" + str #if @coef[:a]
 
     @coef.select{|coef,value| !coef.match(/[a]/)}.each do |coef,value|
       #sign = "+"
       #sign = "-" if value < 0
-      str = "#{value}x^#{(coef.to_s.ord - "a".ord)} + " + str #if value != 0
+      str = "#{value.to_i}x^#{(coef.to_s.ord - "a".ord).to_i} + " + str #if value != 0
     end
-    
+
     return str
   end
-  
+
   def calc x
     Error.call "Polynomial::calc: x is not an integer" if !x.is_a?Integer
-    
+
     y = 0
     @coef.each do |coef,value|
       y += value * x**(coef.to_s.ord - "a".ord)
     end
-    
+
     return y
   end
 end
