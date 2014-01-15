@@ -57,8 +57,8 @@ class Polynomial
   end
 
   def calc x
-    Error.call "Polynomial::calc: x is not an integer" if !x.is_a?Integer
-
+    Error.call "Polynomial::calc: x is not an integer" if !x.is_a?Numeric
+    
     y = 0
     @coef.each do |coef,value|
       y += value * x**(coef.to_i)
