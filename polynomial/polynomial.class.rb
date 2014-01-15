@@ -50,7 +50,7 @@ class Polynomial
     @coef.select{|coef,value| !coef.match(/[a]/)}.each do |coef,value|
       #sign = "+"
       #sign = "-" if value < 0
-      str = "#{value.to_i}x^#{(coef.to_s.ord - "a".ord).to_i} + " + str #if value != 0
+      str = "#{value}x^#{(coef.to_s.ord - "a".ord).to_i} + " + str #if value != 0
     end
 
     return str
