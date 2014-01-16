@@ -48,18 +48,18 @@ class Vector
     @matrix_op = init_matrix_op
     return self
   end
-  
+
   # Return to the norm of the currenet vector
   def norm
     Math.sqrt(@x**2 + @y**2 + @z**2)
   end
-  
+
   # == Returns:
   # Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
   def init_matrix_op
     @matrix_op = Matrix.new [[1, 0, 0],[0, 1, 0], [0, 0, 1]]
   end
-  
+
   # == Parameters:
   # par1::
   #   It may be a point coordonate x, or a other Vector.
@@ -68,7 +68,7 @@ class Vector
   # == Returns:
   # nothing
   #
-  # == Errors:: 
+  # == Errors::
   # If a parameter is invalid, it may be crash the programm with an ERR_HIGH
   # If the vectors do not have the same dimensions, it will display a warning
   def +(par1)
@@ -77,12 +77,12 @@ class Vector
     if par1 != nil and par1.is_a?Vector #and par2 == nil and par3 == nil
       out.x += par1.x
       out.y += par1.y
-      
+
     elsif par1 != nil
       par1 = par1.to_f
       out.x += par1
       out.y += par1
-      
+
       if out.z != nil and par1 == nil
         Error.call "The vector #{Vector.new(par1, par1, par1).to_s} do not have the same dimensions than #{out.to_s}", Error::ERR_HIGH
       elsif out.z != nil
@@ -93,7 +93,7 @@ class Vector
     end
     return out
   end
-  
+
   # == Usage:
   # It is simply like + buf multiply by -1 par1
   def -(par1)
@@ -102,7 +102,7 @@ class Vector
     end
     return (self.+(par1 * -1))
   end
-  
+
   # == Parameters:
   # par1:
   #     This parameter may be a Vector or a number. If it's a Number, it will multiply all coponents of the Vector.
@@ -124,12 +124,12 @@ class Vector
       if out.z != nil
         ary1 << out.z
       end
-      
+
       ary2 = [par1.x, par1.y]
       if out.z != nil
         ary2 << par1.z
       end
-      
+
       aryr = Matrix.mult_array(ary1, ary2)
       out.x = aryr[0]
       out.y = aryr[1]
@@ -141,7 +141,7 @@ class Vector
     end
     return out
   end
-  
+
   # == Parameters:
   # par1, par2::
   #     They are the components of the vector to translate.
@@ -158,13 +158,11 @@ class Vector
     cpy = self
     cpy.z = 1.0
 
-    if @verbose
-      puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}"
-    end
+    puts "translation de vecteur #{Vector.new(par1,par2,par3).to_s}" if @verbose
 
     return (s * cpy.to_matrix).to_vector
   end
-  
+
   # == Parameters:
   # c1,c2,c3::
   #   c1 and c2 are the coeficiens of the homothetie. c3 is optional
@@ -178,33 +176,29 @@ class Vector
     cpy = self
     cpy.z = 1.0
 
-    if @verbose
-      puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}"
-    end
+    puts "homothétie de rapports #{c1.to_f}, #{c2.to_f}" if @verbose
 
     return (s * cpy.to_matrix).to_vector
   end
-  
+
   # == Parameters:
   # a::
   #     The angle in degree
-  # 
+  #
   # == Return value:
   # It returns the vector after the translation.
   def rotate a
     if a == nil
       Error.call "Angle is invalid"
     end
-    
+
     rad = Math::PI * a.to_f / 180.0
     cpy = self # copy to have the same value in z
     cpy.z = 0.0
     s = Matrix.new [[ Math.cos(rad), -Math.sin(rad), 0], [Math.sin(rad), Math.cos(rad), 0], [0, 0, 1]]
     @matrix_op = s
 
-    if @verbose
-      puts "rotation d'angle #{a.to_f}"
-    end
+    puts "rotation d'angle #{a.to_f}" if @verbose
 
     return (s * cpy.to_matrix).to_vector
   end
@@ -216,24 +210,20 @@ class Vector
   # == Return value:
   # It returns the vector after the translation.
   def symetric angle
-    if !Error.isnum? angle.to_s
-      Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH
-    end
+    Error.call "Variable angle is not a number (#{angle})", Error::ERR_HIGH if !Error.isnum? angle.to_s
 
     rad = Math::PI * angle.to_f / 180.0
     s = Matrix.new [[Math.cos(2 * rad), Math.sin(2 * rad), 0], [Math.sin(2 * rad), -Math.cos(2 * rad), 0], [0, 0, 1]]
     @matrix_op = s
     cpy = self.to_matrix
 
-    if @verbose
-      puts "symétrie par rapport à un axe incliné de #{angle.to_f} degrés"
-    end
+    puts "symétrie par rapport à un axe incliné de #{angle.to_f} degrés" if @verbose
 
     return (s * cpy).to_vector
   end
-  
+
   # == Params:
-  # axe:: 
+  # axe::
   #   it must be "x" or "y" (case doesn't checked)
   #
   # == Return:
@@ -242,24 +232,22 @@ class Vector
     if !axe.match(/[xy]/i)
       Error.call "Vector::proj_axe '#{axe} is not a valid axe", Error::ERR_HIGH
     end
-    
+
     s = nil
     if axe.match(/x/i)
       s = Matrix.new [[1, 0, 0], [0, 0, 0], [0, 0, 1]]
     else
       s = Matrix.new [[0, 0, 0], [0, 1, 0], [0, 0, 1]]
     end
-    
+
     @matrix_op = s
     cpy = self.to_matrix
 
-    if @verbose
-      puts "projection sur un axe #{axe}."
-    end
-    
+    puts "projection sur un axe #{axe}." if @verbose
+
     return (s * cpy).to_vector
   end
-  
+
   # == Params:
   # nothing
   # == Return:
@@ -267,14 +255,14 @@ class Vector
   def symetric_pointo
     return homothétie(-1, -1)
   end
-  
+
   # == Parameters:
   # dim::
   #   Option option to choose the desired number of dimension of the vector (if is it in 3d, it will be flattened)
-  # type:: 
+  # type::
   #   Optional and not used yet. It specify the format of the string. It may only be String yet.
   #
-  # == Returns: 
+  # == Returns:
   # String
   def to_s dim=3, type=String
     string = ""
@@ -295,14 +283,14 @@ class Vector
 
     return string
   end
-  
+
   # == Parameters:
-  # type:: 
+  # type::
   #   Optionnal. It specify the format of the array returned. It may be "h" (1) or "w" (0).
   #   * If it's "w" or 0, the Array will be [x,y]
   #   * If it's "h" or 1, the Array returned will be [[x],[y]]
   #
-  # == Returns: 
+  # == Returns:
   # Array or an Array of Array
   def to_ary type=0
     array = []
@@ -319,24 +307,24 @@ class Vector
     end
     return array
   end
-  
+
   # == Parameters::
-  # Nothing 
+  # Nothing
   #
-  # == Returns: 
+  # == Returns:
   # Matrix
   def to_matrix
     return Matrix.new self.to_ary(1)
   end
-  
+
   # == Parameters:
-  # type:: 
+  # type::
   #   It specify the return. It may be String or Array.
   #
-  # == Returns: 
+  # == Returns:
   # String, Array, nil (see type::)
   #
-  # == Errors: 
+  # == Errors:
   # nil return occures only if the parameter types:: is not supported.
   def to_a type=String
     if type == String
@@ -368,13 +356,9 @@ class Vector
   end
 
   def self.collinear? u, v
-    if !u.is_a?Vector or !v.is_a?Vector
-      Error.call "Vector::col : invalid parameters"
-    elsif u.nil?
-      Error.call "Vector::col : vector v1 null", Error::ERR_LOW
-    elsif v.nil?
-      Error.call "Vector::col : vector v2 null", Error::ERR_LOW
-    end
+    Error.call "Vector::col : invalid parameters" if !u.is_a?Vector or !v.is_a?Vector
+    Error.call "Vector::col : vector v1 null", Error::ERR_LOW if u.nil?
+    Error.call "Vector::col : vector v2 null", Error::ERR_LOW if v.nil?
 
     x = u.y * v.z - u.z * v.y
     y = u.z * v.x - u.x * v.z
