@@ -25,8 +25,14 @@ class Polynomial
   # The function is compatible with the first version, where coeficients keys are :a, :b, ...
   # == Parameters:
   # hash::
-  # hash is a hash which have several keys 1, 2,... which correspond to the coeficients
-  def initialize hash={}
+  #   hash is a hash which have several keys 1, 2,... which correspond to the coeficients
+  # verb:: default is false
+  #   verb is true or false, or a integer. It will display more information if turned on when to_s.
+  #   if it's a integer, it must be in the list :
+  #   - 0 : returns ""
+  #   - 1 : "y = equation"
+  #   - 2 : "f(x) = equation" (like true)
+  def initialize hash={}, verb=false
     Error.call "Polynomial::new : You hash is invalid" if !hash.is_a?Hash
 
     hash.select{|k,v| k.to_s.match(/[a-z]/)}.each do |k,v|
@@ -35,6 +41,7 @@ class Polynomial
     end
 
     @coef = hash.select{|coef,value| coef.is_a?Numeric and coef >= 0 and value.is_a?Numeric}
+    @verbose = verb
   end
 
   #calculate the derivated function of the current polynomial
@@ -52,14 +59,18 @@ class Polynomial
 
   #TODO : improve this shit
   def to_s
-    str = " = y"
+    return "" if @verbose == 0
+
+    str = ""
     str = "#{@coef[0].to_i}" + str #if @coef[:a]
 
     @coef.select{|coef,value| coef != 0}.each do |coef,value|
       #sign = "+"
       #sign = "-" if value < 0
-      str = "#{value}x^#{coef} + " + str #if value != 0
+      str = "#{value}x^#{coef} + " + str if value != 0
     end
+    str = "f(x) = " + str if @verbose == true or @verbose == 2
+    str = "y = " + str if @verbose == 1
 
     return str
   end
