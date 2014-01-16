@@ -18,10 +18,14 @@ class Polynomial
   attr_accessor :coef
 
   # Initialize the polynominal function
-  # Its coeficients are '1', '2', '3', '4' ... with '1'x⁰ + '2'x¹ + '3'x² +'4'x³ ... = 0
+  # Its coeficients are 1, 2, 3, 4 ... with '1'x⁰ + '2'x¹ + '3'x² ... = y
+  # Each coeficients has an associated value (exemple : 2 => 1 correspond to 1x²)
+  #
+  # == Notes:
+  # The function is compatible with the first version, where coeficients keys are :a, :b, ...
   # == Parameters:
   # hash::
-  # hash is a hash which have several keys '1', '2',... which correspond to the coeficients
+  # hash is a hash which have several keys 1, 2,... which correspond to the coeficients
   def initialize hash={}
     Error.call "Polynomial::new : You hash is invalid" if !hash.is_a?Hash
 
