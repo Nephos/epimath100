@@ -1,21 +1,29 @@
 .\" Manpage for ruby_sources.
-.\" Contact poulet_a@epitech.eu, bauwen_j@epitech.eu and broggi_t@epitech.eu .in to correct errors or typos.
-.TH man 1 " 2014" "1.5" "ruby_sources man page"
+.\" Contact poulet_a@epitech.eu, bauwen_j@epitech.eu and broggi_t@epitech.eu in to correct errors or typos.
+.TH man 1 " 2014" "1.6" "ruby_sources man page"
 .SH NAME
 ruby_source
 .SH SYNOPSIS
 ruby_sources is a library in ruby which will help to create a Vector, a Matrix, ... or to call an Error. There is few class avaliables :
-.P
-\fBMatrix \fR- Using and manipulating a Matrix easy. It's a basic Matrix class.
-.P
-\fBPoint \fR- Using and manipulating a Point in 3D.
-.P
-\fBLine \fR- Using and manipulating a Line in 3 dimensions, with equations, vectors, etc.
-.P
-\fBVector \fR- Using and manipulating a Vector in 3 dimensions.
-.P
-\fBError \fR- It can call an error, exit the programm, and know if a value passed is a numerical value (even if it's a string).
-.P
+.TP
+\fBError \fR
+It can call an error, exit the programm, and know if a value passed is a numerical value (even if it's a string).
+.TP
+\fBLine \fR
+Line is a basic library to manipulate a line in 3 dimensions. It use vectors, equations etc. and can calculate a point of the line with a coeficient.
+.TP
+\fBMatrix \fR
+Using and manipulating a Matrix easy.
+.TP
+\fBPoint \fR
+Using and manipulating a Point in 3 dimensions.
+.TP
+\fBPolynomial \fR
+This class allow you to manipulate polynomial function.
+It can calculate the derived function.
+.TP
+\fBVector \fR
+Using and manipulating a Vector in 3 dimensions.
 .SH DESCRIPTION
 ruby_sources
 .SH OPTIONS
@@ -27,5 +35,4 @@ No known bugs.
 .br
 Report ./103architecte bugs to arthur.poulet@epitech.eu, thibaut.broggi@epitech.eu, or jordan.bauwens@epitech.eu
 .SH AUTHOR
-poulet_a, broggi_t, bauwen_j
-
+poulet_a, broggi_t, bauwen_j, caudou_j
