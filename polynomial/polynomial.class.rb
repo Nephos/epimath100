@@ -25,7 +25,12 @@ class Polynomial
   def initialize hash={}
     Error.call "Polynomial::new : You hash is invalid" if !hash.is_a?Hash
 
-    @coef = hash.select{|coef,value| coef.match(/(0)|([1-9][0-9]*)/) and value.is_a?Numeric}
+    hash.select{|k,v| k.to_s.match(/[a-z]/)}.each do |k,v|
+      key = (k.to_s.ord - "a".ord)
+      hash[key] = v if hash[key] == nil
+    end
+
+    @coef = hash.select{|coef,value| coef.is_a?Numeric and coef >= 0 and value.is_a?Numeric}
   end
 
   #calculate the derivated function of the current polynomial
@@ -34,9 +39,8 @@ class Polynomial
   def derive
     dérivé = Polynomial.new
 
-    @coef.select{|coef,value| !coef.match(/^0$/)}.each do |coef,value|
-      dérivé_coef = (coef.to_i - 1).to_i
-      dérivé.coef[dérivé_coef] = value * coef.to_i
+    @coef.select{|coef,value| coef != 0}.each do |coef,value|
+      dérivé.coef[coef - 1] = value * coef
     end
 
     return dérivé
@@ -45,9 +49,9 @@ class Polynomial
   #TODO : improve this shit
   def to_s
     str = " = y"
-    str = "#{@coef["1"].to_i}" + str #if @coef[:a]
+    str = "#{@coef[0].to_i}" + str #if @coef[:a]
 
-    @coef.select{|coef,value| !coef.match(/^0$/)}.each do |coef,value|
+    @coef.select{|coef,value| coef != 0}.each do |coef,value|
       #sign = "+"
       #sign = "-" if value < 0
       str = "#{value}x^#{coef} + " + str #if value != 0
@@ -58,10 +62,10 @@ class Polynomial
 
   def calc x
     Error.call "Polynomial::calc: x is not an integer" if !x.is_a?Numeric
-    
+
     y = 0
     @coef.each do |coef,value|
-      y += value * x**(coef.to_i)
+      y += value * x**coef
     end
 
     return y
