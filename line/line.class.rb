@@ -13,19 +13,16 @@ class Line
   # vector::
   #     Any vector director of the line. It must be a Vector (../vector/vector.class.rb)
   def initialize point, vector
-    if !point.is_a?Point
-      Error.call "Line::new : '#{point}' is not a Point"
-    elsif !vector.is_a?Vector
-      Error.call "Line::new : '#{vector}' is not a Vector"
-    elsif vector.nil?
-      Error.call "Line::new : '#{vector}' can't be Null"
-    end
+    Error.call "Line::new : '#{point}' is not a Point" if !point.is_a?Point
+    Error.call "Line::new : '#{vector}' is not a Vector" if !vector.is_a?Vector
+    Error.call "Line::new : '#{vector}' can't be Null" if vector.nil?
 
     @point = point
     @v_dir = vector
     @equ_para = Line::parametric @point, @v_dir
   end
 
+  # TODO : fix if if if if if
   # Check if the point specified is ON the line
   # == Parameter:
   # p::
@@ -33,9 +30,7 @@ class Line
   # == Returns:
   # true/false
   def point_owned? p
-    if !p.is_a?Point
-      Error.call "Line::point_owned? : #{p} is not a valid Point"
-    end
+    Error.call "Line::point_owned? : #{p} is not a valid Point" if !p.is_a?Point
 
     l = parametric()
 
@@ -44,17 +39,17 @@ class Line
     uz = (p.z - l[:z][:p]) / l[:z][:v]
 
     if l[:x][:v] == 0 and p.x == l[:x][:p]
-      ux = uy  
+      ux = uy
     end
-    
+
     if l[:y][:v] == 0 and p.y == l[:y][:p]
-      uy = uz  
+      uy = uz
     end
-    
+
     if l[:z][:v] == 0 and p.z == l[:z][:p]
-      uz = ux  
+      uz = ux
     end
-    
+
     if ux == uy and ux == uz
       true
     else
@@ -76,11 +71,8 @@ class Line
   # == Returns:
   # Hash
   def self.parametric point, v_dir
-    if !v_dir.is_a?Vector
-      Error.call "Line::parametric : Invalid vector"
-    elsif !point.is_a?Point
-      Error.call "Line::parametric : Invalid point"
-    end
+    Error.call "Line::parametric : Invalid vector" if !v_dir.is_a?Vector
+    Error.call "Line::parametric : Invalid point" if !point.is_a?Point
 
     þ = 1
     { :x => { :p => point.x, :v => þ * v_dir.x},
@@ -103,11 +95,8 @@ class Line
   # == Returns:
   # The choosed Point one the line from v (lambda)
   def function v
-    if self.nil?
-      Error.call "Line::function : unable to execute function : the vector v_dir is null"
-    elsif !v.is_a?Numeric
-      Error.call "Line::functionx : invalid lambda ( #{v} ) value"
-    end
+    Error.call "Line::function : unable to execute function : the vector v_dir is null" if self.nil?
+    Error.call "Line::functionx : invalid lambda ( #{v} ) value" if !v.is_a?Numeric
 
     lp = parametric()
     Point.new(lp[:x][:p] + v * lp[:x][:v], lp[:y][:p] + v * lp[:y][:v], lp[:z][:p] + v * lp[:z][:v])

@@ -3,6 +3,7 @@
 require_relative '../error/error.class'
 require_relative '../vector/vector.class'
 
+# TODO : improve the documentation
 class Matrix
   attr_reader :columns, :lines, :v
 
