@@ -57,7 +57,6 @@ class Polynomial
     return dérivé
   end
 
-  #TODO : improve this shit
   def to_s
     return "" if @verbose == 0
 
@@ -75,6 +74,7 @@ class Polynomial
     return str
   end
 
+  # Calculate the value of f(x) from x
   def calc x
     Error.call "Polynomial::calc: x is not a Numeric value" if !x.is_a?Numeric
 
