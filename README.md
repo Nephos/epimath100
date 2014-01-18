@@ -1,4 +1,4 @@
-ruby_sources
+EpiMath100
 ============
 
 Notes
@@ -12,8 +12,11 @@ A compilation of class.
 
 There are
 error.class
-matrix.class (error.class)
-vector.class (error.class)
+matrix.class
+vector.class
+line.class.rb
+point.class.rb
+polynomial.class.rb
 
 Be carefull about the dependancies.
 

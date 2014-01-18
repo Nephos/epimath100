@@ -1,10 +1,10 @@
-.\" Manpage for ruby_sources.
+.\" Manpage for EpiMath100.
 .\" Contact poulet_a@epitech.eu, bauwen_j@epitech.eu and broggi_t@epitech.eu in to correct errors or typos.
-.TH man 1 " 2014" "1.6" "ruby_sources man page"
+.TH man 1 " 2014" "1.6" "EpiMath100 man page"
 .SH NAME
 ruby_source
 .SH SYNOPSIS
-ruby_sources is a library in ruby which will help to create a Vector, a Matrix, ... or to call an Error. There is few class avaliables :
+EpiMath100 is a library in ruby which will help to create a Vector, a Matrix, ... or to call an Error. There is few class avaliables :
 .TP
 \fBError \fR
 It can call an error, exit the programm, and know if a value passed is a numerical value (even if it's a string).
@@ -25,9 +25,9 @@ It can calculate the derived function.
 \fBVector \fR
 Using and manipulating a Vector in 3 dimensions.
 .SH DESCRIPTION
-ruby_sources
+EpiMath100
 .SH OPTIONS
-The ruby_sources does not take any options.
+The EpiMath100 does not take any options.
 .SH SEE ALSO
 No related manpage.
 .SH REPORTING BUGS
