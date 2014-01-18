@@ -1,6 +1,8 @@
 EpiMath100
 ============
 
+[![Gem Version](https://badge.fury.io/rb/epimath100.png)](http://badge.fury.io/rb/epimath100)
+
 Notes
 ------
 All dependancies are availables in private.
