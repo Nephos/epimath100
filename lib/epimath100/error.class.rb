@@ -1,10 +1,6 @@
 #encoding: utf-8
 
-=begin
- Error is a class to display and manage your simple errors
-=end
-
-
+# Error is a class to display and manage your simple errors
 class Error
   ERR_HIGH = "Fatal Error"
   ERR_MEDIUM = "Error"
