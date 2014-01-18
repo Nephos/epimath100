@@ -10,12 +10,7 @@ Gem::Specification.new do |s|
 		  "bauwen_j",
 		  "caudou_j"
 		  ]
-  s.email       = [
-  		  "poulet_a@epitech.eu",
-  		  "broggi_t@epitech.eu",
-		  "bauwen_j@epitech.eu",
-		  "caudou_j@epitech.eu"
-		  ]
+  s.email       = "poulet_a@epitech.eu",
   s.files       = [
   		  "lib/epimath100.rb",
 		  "lib/epimath100/error.class.rb",
