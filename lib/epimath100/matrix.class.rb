@@ -1,7 +1,7 @@
 #encoding: utf-8
 
-require_relative '../error/error.class'
-require_relative '../vector/vector.class'
+require_relative 'error.class'
+require_relative 'vector.class'
 
 # TODO : improve the documentation
 class Matrix

@@ -1,7 +1,7 @@
 #encoding: utf-8
 
-require_relative '../error/error.class'
-require_relative '../matrix/matrix.class'
+require_relative 'error.class'
+require_relative 'matrix.class'
 
 class Vector
   attr_accessor :x, :y, :z, :verbose

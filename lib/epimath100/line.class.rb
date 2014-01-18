@@ -1,8 +1,8 @@
 #encoding: utf-8
 
-require_relative '../error/error.class.rb'
-require_relative '../point/point.class.rb'
-require_relative '../vector/vector.class.rb'
+require_relative 'error.class.rb'
+require_relative 'point.class.rb'
+require_relative 'vector.class.rb'
 
 class Line
   attr_reader :point, :v_dir, :equ_para
