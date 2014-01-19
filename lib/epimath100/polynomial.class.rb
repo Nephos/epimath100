@@ -1,7 +1,7 @@
 #encoding: utf-8
 
-require_relative '../error/error.class'
-require_relative '../vector/vector.class'
+require_relative 'error.class'
+require_relative 'vector.class'
 
 class Polynomial
   EXPOSANT = {"0" => "⁰",
@@ -74,6 +74,7 @@ class Polynomial
     return str
   end
 
+  # Calculate the value of f(x) from x
   def calc x
     Error.call "Polynomial::calc: x is not a Numeric value" if !x.is_a?Numeric
 
