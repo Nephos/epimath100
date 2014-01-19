@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'epimath100'
-  s.version     = '1.6.0'
-  s.date        = '2014-01-18'
+  s.version     = '1.6.1'
+  s.date        = '2014-01-19'
   s.summary     = "EpiMath100, a ruby gem lib to use lines, functions, points, ..."
   s.description = "A simple hello world gem"
   s.authors     = [
