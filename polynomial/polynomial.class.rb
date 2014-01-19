@@ -57,7 +57,6 @@ class Polynomial
     return dérivé
   end
 
-  #TODO : improve this shit
   def to_s
     return "" if @verbose == 0
 
@@ -84,5 +83,13 @@ class Polynomial
     end
 
     return y
+  end
+  
+  def get_degree_max
+    return @coef.keys.max
+  end
+  
+  def get_degree x
+    return @coef[x]
   end
 end
