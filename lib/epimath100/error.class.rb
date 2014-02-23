@@ -5,13 +5,15 @@ class Error
   ERR_HIGH = "Fatal Error"
   ERR_MEDIUM = "Error"
   ERR_LOW = "Warning"
+  ERR_DEFAULT = "Default"
   ERR_COLOR_RED = "0;31"
   ERR_COLOR_GREEN = "0;32"
   ERR_COLOR_YELLOW = "1;33"
   ERR_COLOR_BLUE = "0;34"
   ERR_COLOR_ORANGE = "0;33"
   @@errors = 0
-  
+  @@error_default = ERR_HIGH
+
   # The function will check if the specified value can be converted to a Numerical value.
   # == Parameters:
   # type:: 
@@ -34,18 +36,34 @@ class Error
       return false
     end
   end
-  
+
+  # return @@error_default
+  def self.default
+    return @@error_default
+  end
+
+  # set @@error_default
+  def self.default=(level)
+    if level != Error::ERR_HIGH and level != Error::ERR_MEDIUM and level != Error::ERR_LOW
+      self.call "Error::default= : error level invalid", Error::ERR_MEDIUM
+      @@error_default = Error::ERR_HIGH
+    else
+      @@error_default = level
+    end
+  end
+
   # "call" is a function you can acces with:
   #     Error.call "message", ERR_LEVEL
   # == The error's levels are :
   # * ERR_HIGH
   # * ERR_MEDIUM
   # * ERR_LOW
+  # * ERR_DEFAULT
   # The error's level influence the color (visibility) and defined if the programm must exit.
   # An ERR_HIGH is only to call exit and stop the programm. So be carrefull.
   # ERR_MEDIUM and ERR_LOW will just display the message and no more.
-  # ERR_HIGH is the default value, you can change it if yo want
-  # def self.call m, level=ERR_MEDIUM
+  # ERR_HIGH is the default value, you can change it if yo want by :
+  # Error.default = Error::ERR_X
   #
   # == Parameters:
   # m::
@@ -56,8 +74,12 @@ class Error
   #
   # == Returns:
   #   nil
-  def self.call m, level=Error::ERR_HIGH
-    
+  def self.call m, level=Error::ERR_DEFAULT
+    # define the default value if level is set by "Default"
+    if level == Error::ERR_DEFAULT
+      level = @@error_default
+    end
+
     if level != Error::ERR_HIGH and level != Error::ERR_MEDIUM and level != Error::ERR_LOW
       self.call "Error::call : error level invalid", Error::ERR_MEDIUM
     end
