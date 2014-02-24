@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative 'error.class.rb'
+require 'myerror'
 require_relative 'point.class.rb'
 require_relative 'vector.class.rb'
 

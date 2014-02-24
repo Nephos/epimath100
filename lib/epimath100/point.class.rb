@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative 'error.class.rb'
+require 'myerror'
 
 class Point
   def initialize x, y, z

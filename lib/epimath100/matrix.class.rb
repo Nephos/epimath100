@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative 'error.class'
+require 'myerror'
 require_relative 'vector.class'
 
 # TODO : improve the documentation

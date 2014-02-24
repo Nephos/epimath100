@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'epimath100'
-  s.version     = '1.6.2'
-  s.date        = '2014-02-23'
+  s.version     = '1.7.0'
+  s.date        = '2014-02-24'
   s.summary     = "EpiMath100, a ruby gem lib to use lines, functions, points, ..."
   s.description = "A simple hello world gem"
   s.authors     = [
@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.email       = "poulet_a@epitech.eu",
   s.files       = [
   		  "lib/epimath100.rb",
-		  "lib/epimath100/error.class.rb",
 		  "lib/epimath100/line.class.rb",
 		  "lib/epimath100/matrix.class.rb",
 		  "lib/epimath100/point.class.rb",
@@ -22,4 +21,6 @@ Gem::Specification.new do |s|
 		  ]
   s.homepage    = "https://github.com/Sophen/epimath100"
   s.license     = "GNU/GPLv3"
+
+  s.add_runtime_dependency 'myerror', '~> 1.0.0', '>= 1.0.0'
 end

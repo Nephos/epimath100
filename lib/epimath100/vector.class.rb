@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require_relative 'error.class'
+require 'myerror'
 require_relative 'matrix.class'
 
 class Vector
