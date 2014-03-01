@@ -23,13 +23,13 @@ module EpiMath
     end
 
     def to_s
-      string = "       #{@poly.to_s}\nf(x) = "
-      if @poly.to_s.size >= @div.to_s.size
-        string << "-" * @poly.to_s.size
-      else
-        string << "-" * @div.to_s.size
-      end
-      string << "\n       #{" " * ((@poly.to_s.size - @div.to_s.size) / 2).abs}#{@div.to_s}"
+      max_space = [@poly.to_s.size, @div.to_s.size].max
+      top_space = (max_space - @poly.to_s.size) / 2
+      bot_space = (max_space - @div.to_s.size) / 2
+
+      string =  "       #{" " * top_space}#{@poly.to_s}\n"
+      string += "f(x) = #{"-" * max_space}"
+      string << "\n       #{" " * bot_space}#{@div.to_s}"
       return string
     end
 
