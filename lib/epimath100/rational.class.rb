@@ -29,7 +29,7 @@ module EpiMath
       else
         string << "-" * @div.to_s.size
       end
-      string << "\n       #{" " * ((@poly.to_s.size - @div.to_s.size) / 2)}#{@div.to_s}"
+      string << "\n       #{" " * ((@poly.to_s.size - @div.to_s.size) / 2).abs}#{@div.to_s}"
       return string
     end
 
@@ -38,7 +38,8 @@ module EpiMath
 
       p = @poly.calc x
       q = @div.calc x
-      return p.to_f / q.to_f
+      return 0 if q == 0
+      return p / q
     end
 
     #accessors
