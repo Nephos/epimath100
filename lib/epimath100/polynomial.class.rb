@@ -65,5 +65,14 @@ module EpiMath100
 
       return str
     end
+
+    # Calculate the value of f(x) from x
+    def calc x
+      y = 0
+      [@coef.size].max.times do |coef|
+        y += @coef[coef] * x**coef
+      end
+      return y
+    end
   end
 end
