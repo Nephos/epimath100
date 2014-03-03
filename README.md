@@ -1,12 +1,12 @@
 EpiMath100
 ============
 
-[![Gem Version](https://badge.fury.io/rb/epimath100.png)](http://badge.fury.io/rb/epimath100)
-[![Developpement](https://badge.fury.io/gh/Sophen%2Fepimath100.png)](http://badge.fury.io/gh/Sophen%2Fepimath100)
+[![Gem Version](https://badge.fury.io/rb/epimath100.png)](http://badge.fury.io/rb/epimath100)  
+[![Developpement](https://badge.fury.io/gh/Sophen%2Fepimath100.png)](http://badge.fury.io/gh/Sophen%2Fepimath100)  
 
 Infos
 ------
-A compilation of class.
+A compilation of class.  
 
 There are :
 - matrix.class
@@ -15,7 +15,7 @@ There are :
 - point.class.rb
 - polynomial.class.rb
 
-It use MyError (gem).
+It use MyError (gem).  
 
 Contributors
 ------
