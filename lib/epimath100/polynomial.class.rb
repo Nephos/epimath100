@@ -59,19 +59,11 @@ module EpiMath100
         #sign = "-" if value < 0
         str = "#{value}x^#{coef} + " + str if value != 0
       end
+
       str = "f(x) = " + str if @verbose == true or @verbose == 2
       str = "y = " + str if @verbose == 1
 
       return str
-    end
-
-    # Calculate the value of f(x) from x
-    def calc x
-      y = 0
-      [@coef.size].max.times do |coef|
-        y += @coef[coef] * x**coef
-      end
-      return y
     end
   end
 end
