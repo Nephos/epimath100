@@ -5,12 +5,12 @@ require_relative 'function.class'
 
 module EpiMath100
   class Rational < Function
-    attr_accessor :coef, :div, :verbose
+    attr_accessor :verbose
 
-    def initialize coef=[], div=[], verb=false
-      Error.call "Rational::new : Your coef are invalid" if !coef.is_a?Array
-      Error.call "Rational::new : Your divider are invalid" if !div.is_a?Array
-      @coef = coef #todo : check each element of the array (hash to use select ?)
+    def initialize poly=Polynomial.new, div=Polynomial.new([1]), verb=2
+      Error.call "Rational::new : Your poly are invalid" if !coef.is_a?=Polynomial
+      Error.call "Rational::new : Your divider are invalid" if !div.is_a?=Polynomial
+      @poly = poly #todo : check each element of the array (hash to use select ?)
       @div = div
       @verbose = verb
     end
@@ -40,5 +40,22 @@ module EpiMath100
 
       return y
     end
+
+    #accessors
+    def poly= p
+      Error.call "Rational::new : Your poly are invalid" if !p.is_a?=Polynomial
+      @poly = p
+    end
+    def div= p
+      Error.call "Rational::new : Your divider are invalid" if !p.is_a?=Polynomial
+      @div = p
+    end
+    def poly
+      @poly
+    end
+    def div
+      @div
+    end
+
   end
 end
