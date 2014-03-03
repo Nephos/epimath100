@@ -2,7 +2,7 @@
 
 gem 'myerror'
 
-module EpiMath100
+module EpiMath
 class Point
   def initialize x, y, z
     if !x.is_a?Numeric or !y.is_a?Numeric or !z.is_a?Numeric

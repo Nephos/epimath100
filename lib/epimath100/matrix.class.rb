@@ -3,7 +3,7 @@
 gem 'myerror'
 require_relative 'vector.class'
 
-module EpiMath100
+module EpiMath
 # TODO : improve the documentation
 class Matrix
   attr_reader :columns, :lines, :v

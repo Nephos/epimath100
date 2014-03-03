@@ -9,5 +9,5 @@ require_relative "epimath100/polynomial.class.rb"
 require_relative "epimath100/rational.class.rb"
 require_relative "epimath100/vector.class.rb"
 
-module EpiMath100
+module EpiMath
 end

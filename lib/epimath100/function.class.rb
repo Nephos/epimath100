@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-module EpiMath100
+module EpiMath
   EXPOSANT = {"0" => "⁰",
     "1" => "¹",
     "2" => "²",

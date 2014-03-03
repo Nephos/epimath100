@@ -4,7 +4,7 @@ gem 'myerror'
 require_relative 'function.class'
 require_relative 'polynomial.class'
 
-module EpiMath100
+module EpiMath
   class Rational < Function
     attr_accessor :verbose
 

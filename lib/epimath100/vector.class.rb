@@ -3,7 +3,7 @@
 gem 'myerror'
 require_relative 'matrix.class'
 
-module EpiMath100
+module EpiMath
   class Vector
     attr_accessor :x, :y, :z, :verbose
     attr_reader :matrix_op

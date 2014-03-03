@@ -4,7 +4,7 @@ gem 'myerror'
 require_relative 'point.class.rb'
 require_relative 'vector.class.rb'
 
-module EpiMath100
+module EpiMath
 class Line
   attr_reader :point, :v_dir, :equ_para
 

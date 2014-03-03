@@ -3,7 +3,7 @@
 gem 'myerror'
 require_relative 'function.class'
 
-module EpiMath100
+module EpiMath
   class Polynomial < Function
 
     attr_accessor :coef, :verb
