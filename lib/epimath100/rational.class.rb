@@ -12,8 +12,10 @@ module EpiMath100
       #Error.call "Rational::new : Your poly are invalid" if !poly.is_a?Polynomial
       Error.call "Rational::new : Your divider are invalid" if !div.is_a?Polynomial
       @poly = poly #todo : check each element of the array (hash to use select ?)
+      @poly.verb = 0
       @div = div
-      @verbose = verb
+      @div.verb = 0
+      @verb = verb
     end
 
     def derive
@@ -21,13 +23,13 @@ module EpiMath100
     end
 
     def to_s
-      string = "#{@poly.to_s}\n"
+      string = "       #{@poly.to_s}\nf(x) = "
       if @poly.to_s.size >= @div.to_s.size
         string << "-" * @poly.to_s.size
       else
         string << "-" * @div.to_s.size
       end
-      string << "\n#{@div.to_s}"
+      string << "\n       #{" " * (@poly.to_s.size / 2)}#{@div.to_s}"
       return string
     end
 

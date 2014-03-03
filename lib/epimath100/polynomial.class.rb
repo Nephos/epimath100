@@ -6,7 +6,7 @@ require_relative 'function.class'
 module EpiMath100
   class Polynomial < Function
 
-    attr_accessor :coef, :verbose
+    attr_accessor :coef, :verb
 
     # Initialize the polynominal function
     # Its coeficients are 1, 2, 3, 4 ... with '1'x⁰ + '2'x¹ + '3'x² ... = y
@@ -46,8 +46,6 @@ module EpiMath100
     end
 
     def to_s
-      return "" if @verbose == 0
-
       str = ""
       str = "#{@coef[0].to_i}" + str #if @coef[:a]
 
@@ -59,8 +57,8 @@ module EpiMath100
         end
       end
 
-      str = "f(x) = " + str     if @verbose == 2
-      str = "y = " + str        if @verbose == 1
+      str = "f(x) = " + str     if @verb == 2
+      str = "y = " + str        if @verb == 1
 
       return str
     end
