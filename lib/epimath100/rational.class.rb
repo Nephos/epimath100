@@ -2,14 +2,15 @@
 
 gem 'myerror'
 require_relative 'function.class'
+require_relative 'polynomial.class'
 
 module EpiMath100
   class Rational < Function
     attr_accessor :verbose
 
     def initialize poly=Polynomial.new, div=Polynomial.new([1]), verb=2
-      Error.call "Rational::new : Your poly are invalid" if !coef.is_a?=Polynomial
-      Error.call "Rational::new : Your divider are invalid" if !div.is_a?=Polynomial
+      #Error.call "Rational::new : Your poly are invalid" if !poly.is_a?Polynomial
+      Error.call "Rational::new : Your divider are invalid" if !div.is_a?Polynomial
       @poly = poly #todo : check each element of the array (hash to use select ?)
       @div = div
       @verbose = verb
@@ -33,21 +34,19 @@ module EpiMath100
     def calc x
       Error.call "Rational::calc: x is not a Numeric value" if !x.is_a?Numeric
 
-      y = 0
-      [@coef.size, @div.size].max.times do |coef|
-        #calcul
-      end
-
-      return y
+      p = @poly.calc x
+      q = @div.calc x
+      return nil if q == 0
+      return p / q
     end
 
     #accessors
     def poly= p
-      Error.call "Rational::new : Your poly are invalid" if !p.is_a?=Polynomial
+      Error.call "Rational::new : Your poly are invalid" if !p.is_a?Polynomial
       @poly = p
     end
     def div= p
-      Error.call "Rational::new : Your divider are invalid" if !p.is_a?=Polynomial
+      Error.call "Rational::new : Your divider are invalid" if !p.is_a?Polynomial
       @div = p
     end
     def poly
