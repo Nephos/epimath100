@@ -1,10 +1,10 @@
 #encoding: utf-8
 
 gem 'myerror'
-require_relative 'function.class'
+require_relative 'rational.class'
 
 module EpiMath100
-  class Polynomial < Function
+  class Polynomial < Rational
     EXPOSANT = {"0" => "⁰",
       "1" => "¹",
       "2" => "²",
@@ -16,7 +16,7 @@ module EpiMath100
       "8" => "⁸",
       "9" => "⁹"}
 
-    attr_accessor :coef
+    attr_accessor :coef, :verbose
 
     # Initialize the polynominal function
     # Its coeficients are 1, 2, 3, 4 ... with '1'x⁰ + '2'x¹ + '3'x² ... = y
@@ -32,20 +32,7 @@ module EpiMath100
     #   - 1 : "y = equation"
     #   - 2 : "f(x) = equation" (like true)
     def initialize coef=[], verb=false
-      Error.call "Polynomial::new : Your coef is invalid" if !coef.is_a?Hash and !coef.is_a?Array
-
-      coef = convert_hash(coef) if coef.is_a?Hash
-      @coef = coef.select{|v| v.is_a?Numeric}
-      @verbose = verb
-    end
-
-    def convert_hash hash
-      coef = []
-      hash.select{|k,v| k.to_s.match(/[a-z]/)}.each do |k,v|
-        key = (k.to_s.ord - "a".ord).to_i
-        hash[key] = v if hash[key] == nil
-      end
-      return coef
+      super(coef, [], verb)
     end
 
     #calculate the derivated function of the current polynomial
@@ -84,16 +71,7 @@ module EpiMath100
       [@coef.size].max.times do |coef|
         y += @coef[coef] * x**coef
       end
-
       return y
-    end
-
-    def get_degree_max
-      return @coef.keys.max
-    end
-
-    def get_degree x
-      return @coef[x]
     end
   end
 end
