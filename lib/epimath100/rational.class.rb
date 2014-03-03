@@ -31,7 +31,14 @@ module EpiMath100
     end
 
     def to_s
-      return ""
+      string = "#{@coef.to_s}\n"
+      if @coef.to_s.size >= @div.to_s.size
+        string << "_" * @coef.to_s.size
+      else
+        string << "_" * @div.to_s.size
+      end
+      string << "\n#{@div.to_s}"
+      return string
     end
 
     def calc x
