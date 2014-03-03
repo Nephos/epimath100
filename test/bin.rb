@@ -11,7 +11,9 @@ def test1
   puts  g = EpiMath100::Rational.new(EpiMath100::Polynomial.new([1, 2]),
                                      EpiMath100::Polynomial.new([1])
                                      )
-  puts  g.calc 10
+  puts  g.calc 0
+  puts  g.calc 1
+  puts  g.calc 3
 end
 
 def test2
