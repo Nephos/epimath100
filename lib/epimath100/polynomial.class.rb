@@ -1,6 +1,6 @@
 #encoding: utf-8
 
-require 'myerror'
+gem 'myerror'
 require_relative 'function.class'
 
 module EpiMath100
@@ -31,7 +31,7 @@ module EpiMath100
     #   - 0 : returns ""
     #   - 1 : "y = equation"
     #   - 2 : "f(x) = equation" (like true)
-    def initialize coef={}, verb=false
+    def initialize coef=[], verb=false
       Error.call "Polynomial::new : Your coef is invalid" if !coef.is_a?Hash and !coef.is_a?Array
 
       coef = convert_hash(coef) if coef.is_a?Hash

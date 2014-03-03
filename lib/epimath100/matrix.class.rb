@@ -1,8 +1,9 @@
 #encoding: utf-8
 
-require 'myerror'
+gem 'myerror'
 require_relative 'vector.class'
 
+module EpiMath100
 # TODO : improve the documentation
 class Matrix
   attr_reader :columns, :lines, :v
@@ -304,4 +305,5 @@ class Matrix
     return det
   end
 
+end
 end

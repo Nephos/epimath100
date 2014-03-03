@@ -1,9 +1,10 @@
 #encoding: utf-8
 
-require 'myerror'
+gem 'myerror'
 require_relative 'point.class.rb'
 require_relative 'vector.class.rb'
 
+module EpiMath100
 class Line
   attr_reader :point, :v_dir, :equ_para
 
@@ -102,4 +103,5 @@ class Line
     Point.new(lp[:x][:p] + v * lp[:x][:v], lp[:y][:p] + v * lp[:y][:v], lp[:z][:p] + v * lp[:z][:v])
   end
 
+end
 end

@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'epimath100'
-  s.version     = '1.8.0'
+  s.version     = '2.0.0'
   s.date        = '2014-03-03'
   s.summary     = "Add generic function, and rationnal functions"
   s.description = "EpiMath100, a ruby gem lib to use lines, functions, points, ..."

@@ -1,12 +1,12 @@
 #encoding: utf-8
 
-require 'myerror'
+gem 'myerror'
 require_relative 'function.class'
 require_relative 'polynomial.class'
 
 module EpiMath100
   class Rational < Polynomial
-    def initialize coef={}, div={}, verb=false
+    def initialize coef=[], div=[], verb=false
       super(coef, verb)
       Error.call "Rational::new : Your divider hash is invalid" if !div.is_a?Hash and !coef.is_a?Array
       @div = div.select{|v| v.is_a?Numeric}
