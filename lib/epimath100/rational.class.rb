@@ -38,7 +38,7 @@ module EpiMath
 
       p = @poly.calc x
       q = @div.calc x
-      return nil if q == 0
+      return 0 if q == 0
       return p / q
     end
 
