@@ -11,8 +11,10 @@ module EpiMath
     "7" => "⁷",
     "8" => "⁸",
     "9" => "⁹"}
+
   class Function
     def calc x
+      return 0
     end
 
     def convert_hash hash
@@ -25,7 +27,7 @@ module EpiMath
     end
 
     def get_degree_max
-      return @coef.keys.max
+      return @coef.rindex{|x| x != nil}
     end
 
     def get_degree x
