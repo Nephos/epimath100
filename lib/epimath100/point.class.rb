@@ -26,11 +26,17 @@ class Point
   end
 
   def *(p)
-    Error.call "Point::+ : passed argument is invalid" if !p.is_a?Numeric
+    Error.call "Point::* : passed argument is invalid" if !p.is_a?Numeric
 
     @coord.x *= p
     @coord.y *= p
     @coord.z *= p
+  end
+
+  def ==(p)
+    Error.call "Point::== : passed argument is invalid" if !p.is_a?Point
+    return true if p.x == self.x and p.y == self.y and p.z == self.z
+    return false
   end
 
   def to_s

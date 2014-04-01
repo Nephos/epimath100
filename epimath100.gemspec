@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'epimath100'
-  s.version     = '2.0.2'
+  s.version     = '2.0.3'
   s.date        = '2014-03-08'
-  s.summary     = "Fix function"
+  s.summary     = "Fix point"
   s.description = "EpiMath100, a ruby gem lib to use lines, functions, points, ..."
   s.authors     = [
   		  "poulet_a",

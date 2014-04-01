@@ -11,15 +11,23 @@ class Line
   # == Parameters:
   # point::
   #     Any point on the line. It must be a Point (../point/point.class.rb)
-  # vector::
+  # param2::
   #     Any vector director of the line. It must be a Vector (../vector/vector.class.rb)
-  def initialize point, vector
-    Error.call "Line::new : '#{point}' is not a Point" if !point.is_a?Point
-    Error.call "Line::new : '#{vector}' is not a Vector" if !vector.is_a?Vector
-    Error.call "Line::new : '#{vector}' can't be Null" if vector.nil?
-
+  #     It also can be a 2sd point of the line
+  def initialize point, param2
     @point = point
-    @v_dir = vector
+    if param2.is_a?Vector
+      @v_dir = param2
+    elsif param2.is_a?Point
+      #coef = (param2.y - point.y) / (param2.x - coef.x)
+      #ordo = point.y - coef * point.x
+      @v_dir = Vector.new(param2.x - point.x, param2.y - point2.y)
+    else
+      Error.call "Line::new : '#{@vector}' is neither a Vector or a Point"
+    end
+    Error.call "Line::new : '#{@point}' is not a Point" if !@point.is_a?Point
+    Error.call "Line::new : '#{@vector}' can't be Null" if @vector.nil?
+
     @equ_para = Line::parametric @point, @v_dir
   end
 
