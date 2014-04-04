@@ -16,10 +16,10 @@ def test1
   puts  g.calc 3
 end
 
-def test_line
+def test_point
   require_relative '../lib/epimath100'
-  m = EpiMath::Point.get_middle(EpiMath::Point.new(0, 0), EpiMath::Point.new(1,2))
+  m = EpiMath::Point.get_middle(EpiMath::Point.new_a([0, 0]), EpiMath::Point.new(1,2))
   puts m
 end
 
-test_line()
+test_point()

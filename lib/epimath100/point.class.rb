@@ -5,11 +5,14 @@ gem 'myerror'
 module EpiMath
 class Point
   def initialize x, y, z=nil
-    if (!x.is_a?Numeric or !y.is_a?Numeric or (z != nil and !z.is_a?Numeric))
-      Error.call "Point::new : a passed argument is not a valid number"
-    end
+    Error.call "Point::new : a passed argument is not a valid number" if (!x.is_a?Numeric or !y.is_a?Numeric or (z != nil and !z.is_a?Numeric))
     @coord = {:x => x.to_f, :y => y.to_f}
     @coord[:z] = z.to_f if z != nil
+  end
+
+  def self.new_a p
+    Error.call "Point::new_a : not a valid array of coord" if !p.is_a?Array or p.size < 2
+    return Point.new(*p)
   end
 
   def +(p)
