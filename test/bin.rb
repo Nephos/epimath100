@@ -18,7 +18,9 @@ end
 
 def test_point
   require_relative '../lib/epimath100'
-  m = EpiMath::Point.get_middle(EpiMath::Point.new_a([0, 0]), EpiMath::Point.new(1,2))
+  m = EpiMath::Point.get_in(EpiMath::Point.new_a([1, 1]),
+                            EpiMath::Point.new(2,4),
+                            0.5)
   puts m
 end
 
