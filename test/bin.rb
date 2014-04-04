@@ -3,28 +3,23 @@
 
 def test1
   require_relative '../lib/epimath100'
-  puts  f = EpiMath100::Polynomial.new([1, 2])
+  puts  f = EpiMath::Polynomial.new([1, 2])
   puts  f.calc 0
   puts  f.calc 1
   puts  f.calc 3
 
-  puts  g = EpiMath100::Rational.new(EpiMath100::Polynomial.new([1, 2]),
-                                     EpiMath100::Polynomial.new([1])
-                                     )
+  puts  g = EpiMath::Rational.new(EpiMath::Polynomial.new([1, 2]),
+                                  EpiMath::Polynomial.new([1])
+                                  )
   puts  g.calc 0
   puts  g.calc 1
   puts  g.calc 3
 end
 
-def test2
-  require "epimath100"
-  puts  f = Polynomial.new([1, 2])
-  puts  f.calc 10
-
-  puts  g = Rational.new(Polynomial.new([1, 2]),
-                                     Polynomial.new([1])
-                                     )
-  puts  g.calc 10
+def test_line
+  require_relative '../lib/epimath100'
+  m = EpiMath::Point.get_middle(EpiMath::Point.new(0, 0), EpiMath::Point.new(1,2))
+  puts m
 end
 
-test1()
+test_line()
