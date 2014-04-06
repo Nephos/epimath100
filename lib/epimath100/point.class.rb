@@ -17,6 +17,7 @@ class Point
     return Point.new(*p)
   end
 
+  # TODO : do not modify @
   def +(p)
     if p.is_a?Point
       @coord[:x] += p.x
@@ -27,8 +28,16 @@ class Point
       @coord[:y] += p
       @coord[:z] += p if @coord[:z]
     else
-      MyError::Error.call "Point::+ : passed argument is invalid"
+      MyError::Error.call "Point::+ : passed argument is invalid (#{p.class})"
     end
+    return self
+  end
+
+  def -(p)
+    p_ = Point.new(-self.x, -self.y)
+    p_ = Point.new(-self.x, -self.y, -self.z) if self.z
+    p_ = p_ + p
+    return p_
   end
 
   def *(p)
@@ -37,6 +46,7 @@ class Point
     @coord[:x] *= p
     @coord[:y] *= p
     @coord[:z] *= p if @coord[:z]
+    return self
   end
 
   def ==(p)

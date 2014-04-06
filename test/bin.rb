@@ -22,6 +22,7 @@ def test_point
                             EpiMath::Point.new(2,4),
                             0.5)
   puts m
+  puts (m + (-EpiMath::Point.new(1,2))).to_s
 end
 
 test_point()
