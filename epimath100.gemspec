@@ -1,8 +1,10 @@
+require_relative "lib/epimath100/gem-version"
+
 Gem::Specification.new do |s|
   s.name        = 'epimath100'
-  s.version     = '2.0.5'
-  s.date        = '2014-03-08'
-  s.summary     = "Better point"
+  s.version     = RubyHelper::VERSION
+  s.date        = Time.now.getgm.to_s.split.first
+  s.summary     = ""
   s.description = "EpiMath100, a ruby gem lib to use lines, functions, points, ..."
   s.authors     = [
   		  "poulet_a",
@@ -13,13 +15,19 @@ Gem::Specification.new do |s|
   s.email       = "poulet_a@epitech.eu",
   s.files       = [
   		  "lib/epimath100.rb",
+  		  "lib/epimath100/gem-version.rb",
 		  "lib/epimath100/line.class.rb",
 		  "lib/epimath100/matrix.class.rb",
 		  "lib/epimath100/point.class.rb",
 		  "lib/epimath100/function.class.rb",
 		  "lib/epimath100/polynomial.class.rb",
 		  "lib/epimath100/rational.class.rb",
-		  "lib/epimath100/vector.class.rb"
+		  "lib/epimath100/vector.class.rb",
+		  "README.md",
+		  "LICENSE",
+		  "epimath100.gemspec",
+		  "epimath100.man",
+		  "test/"
 		  ]
   s.homepage    = "https://github.com/Sophen/epimath100"
   s.license     = "GNU/GPLv3"
