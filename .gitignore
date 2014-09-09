@@ -15,10 +15,10 @@ tmp
 .metadata/*
 .settings/*
 # YARD artifacts
-.yardoc
-_yardoc
+.yard*
 doc/
 .project
 
 #test/*
 *~
+~*
