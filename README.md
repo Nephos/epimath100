@@ -2,7 +2,7 @@ EpiMath100
 ============
 
 [![Gem Version](https://badge.fury.io/rb/epimath100.png)](http://badge.fury.io/rb/epimath100)  
-[![GitHub version](https://badge.fury.io/gh/pouleta%2Fepimath100.png)](http://badge.fury.io/gh/Sophen%2Fepimath100)  
+[![GitHub version](https://badge.fury.io/gh/pouleta%2Fepimath100.png)](http://badge.fury.io/gh/pouleta%2Fepimath100)  
 
 Infos
 ------
